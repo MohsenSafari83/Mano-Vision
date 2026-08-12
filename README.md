@@ -7,7 +7,7 @@ This project implements the exact same hardware model used by the web-based simu
 ![ManoVision demo](./assets/demo.png)
 
 <p align="center">
-  <a href="https://mohsensafari83.github.io/mano-vision/"><img alt="Live Demo" src="https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-2ea44f"></a>
+  <a href="https://mohsensafari83.github.io/Mano-Vision/"><img alt="Live Demo" src="https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-2ea44f"></a>
   <img alt="Language" src="https://img.shields.io/badge/C-C11-00599C">
   <img alt="Dependencies" src="https://img.shields.io/badge/dependencies-none-brightgreen">
   <img alt="Status" src="https://img.shields.io/badge/status-active-blue">
@@ -24,7 +24,7 @@ This project implements the exact same hardware model used by the web-based simu
 </p>
 
 > **Try it online:** the web-based visualizer — built on the same hardware model described in this README — is live on GitHub Pages: [Visualize the Mano Basic
-> Computer](**https://mohsensafari83.github.io/mano-vision/**)
+> Computer](**https://mohsensafari83.github.io/Mano-Vision/**)
 
 |                                      |                                                               |     |
 | ------------------------------------ | ------------------------------------------------------------- | --- |
