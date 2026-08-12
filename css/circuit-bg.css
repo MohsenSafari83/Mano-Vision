@@ -1,0 +1,92 @@
+/* =========================================================================
+   CIRCUIT BACKGROUND — dark PCB / CPU-datapath trace field
+   Pure inline SVG + CSS, no raster image. A continuous field of thin,
+   mostly-vertical traces in a single deep-blue hue, with a denser
+   branching "main datapath" structure through the vertical center.
+   Uses the project's existing tokens (--bg, --bg2, --border-active).
+   ========================================================================= */
+
+.circuit-bg{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  pointer-events:none;
+  background:
+    radial-gradient(120% 90% at 50% 38%, color-mix(in srgb, var(--border-active) 5%, transparent), transparent 60%),
+    var(--bg);
+}
+
+.circuit-bg svg{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  display:block;
+}
+
+/* deep-blue, single hue throughout — no cyan/purple mixed in here */
+.circuit-bg .cbg-l1{ fill:none; stroke:var(--border-active); stroke-width:.7; stroke-linejoin:round; opacity:.07; }
+.circuit-bg .cbg-l1 circle{ fill:var(--border-active); stroke:none; opacity:.09; }
+
+.circuit-bg .cbg-l2{ fill:none; stroke:var(--border-active); stroke-width:.85; stroke-linejoin:round; opacity:.14; }
+.circuit-bg .cbg-l2 circle{ fill:var(--border-active); stroke:none; opacity:.20; }
+
+.circuit-bg .cbg-l3{ fill:none; stroke:var(--border-active); stroke-width:1.15; stroke-linejoin:round; stroke-linecap:round; opacity:.24; }
+.circuit-bg .cbg-l3 circle{ fill:var(--border-active); stroke:none; opacity:.30; }
+
+/* a couple of the primary trunk lines carry a slow, quiet signal —
+   a short brighter dash riding an otherwise-identical faint line */
+.circuit-bg .cbg-pulse{
+  fill:none;
+  stroke:color-mix(in srgb, var(--border-active) 78%, white);
+  stroke-width:1.3;
+  stroke-linecap:round;
+  stroke-dasharray:1.5 340;
+  opacity:.5;
+  animation:cbg-flow linear infinite;
+}
+.circuit-bg .cbg-pulse.p1{ animation-duration:13s; }
+.circuit-bg .cbg-pulse.p2{ animation-duration:16s; animation-delay:-6s; }
+
+@keyframes cbg-flow{
+  from{ stroke-dashoffset:0; }
+  to{ stroke-dashoffset:-900; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .circuit-bg .cbg-pulse{ animation:none; opacity:0; }
+}
+
+/* vignette — darker toward the edges, quietest at dead center where
+   the busiest part of the datapath sits, so it still recedes correctly */
+.circuit-bg::after{
+  content:"";
+  position:absolute; inset:0;
+  background:
+    radial-gradient(75% 65% at 50% 40%, transparent 0%, transparent 40%, color-mix(in srgb, var(--bg) 55%, transparent) 78%, var(--bg) 100%);
+}
+
+html[data-theme="light"] .circuit-bg{
+  background:
+    radial-gradient(120% 90% at 50% 38%, color-mix(in srgb, var(--border-active) 6%, transparent), transparent 60%),
+    var(--bg);
+}
+html[data-theme="light"] .circuit-bg .cbg-l1{ opacity:.05; }
+html[data-theme="light"] .circuit-bg .cbg-l2{ opacity:.09; }
+html[data-theme="light"] .circuit-bg .cbg-l3{ opacity:.15; }
+html[data-theme="light"] .circuit-bg .cbg-pulse{ opacity:.3; }
+html[data-theme="light"] .circuit-bg::after{
+  background:
+    radial-gradient(75% 65% at 50% 40%, transparent 0%, transparent 40%, color-mix(in srgb, var(--bg) 45%, transparent) 78%, var(--bg) 100%);
+}
+
+/* keep the real UI unambiguously above the background layer.
+   .nav (z-index:100) and .scope-drawer (z-index:90) already sit well
+   above this layer's z-index:0 — only .tab-page needs its own
+   stacking context, since it has none of its own. */
+.tab-page{ position:relative; z-index:1; }
+
+@media (max-width:760px){
+  .circuit-bg .cbg-l1{ opacity:.05; }
+  .circuit-bg .cbg-l2{ opacity:.10; }
+  .circuit-bg .cbg-l3{ opacity:.18; }
+}
