@@ -29,7 +29,7 @@ This project models the same core hardware organization used by the web-based si
 ### Individual Modules
 
 <p align="center">
-  <img src="./assets/modules.png" alt="Individual Modules" width="800">
+  <img src="./assets/Modules.png" alt="Individual Modules" width="800">
 </p>
 
 _Explore individual components such as registers, ALU, memory, bus, and control unit._
