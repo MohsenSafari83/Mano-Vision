@@ -1,10 +1,10 @@
 # ManoVision — Morris Mano's Basic Computer, Simulated (C implementation)
 
+![ManoVision demo](./assets/demo.png)
+
 A complete implementation of **Morris Mano's Basic Computer** in C — modular architecture, a built-in two-pass assembler, an interactive shell (REPL), and a JSON trace output for step-by-step, micro-operation-level visualization.
 
-This project implements the exact same hardware model used by the web-based simulator (HTML/CSS/JS): 8 registers, 4096 × 16-bit memory, one common bus, and a control unit that generates control signals based on T-state and opcode.
-
-![ManoVision demo](./assets/demo.png)
+This project models the same core hardware organization used by the web-based simulator: 8 registers, 4096 × 16-bit memory, a common bus, and a control unit driven by opcode and T-state sequencing.
 
 <p align="center">
   <a href="https://mohsensafari83.github.io/Mano-Vision/"><img alt="Live Demo" src="https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-2ea44f"></a>
@@ -14,7 +14,7 @@ This project implements the exact same hardware model used by the web-based simu
 </p>
 
 <p align="center">
-  <a href="https://mohsensafari83.github.io/mano-vision/">🌐 Live Simulator</a> •
+  <a href="https://mohsensafari83.github.io/Mano-Vision/">🌐 Live Simulator</a> •
   <a href="#2-internal-architecture">Architecture</a> •
   <a href="#6-assembly-language">Assembly Language</a> •
   <a href="#7-instruction-set">Instruction Set</a> •
@@ -26,12 +26,30 @@ This project implements the exact same hardware model used by the web-based simu
 > **Try it online:** the web-based visualizer — built on the same hardware model described in this README — is live on GitHub Pages: [Visualize the Mano Basic
 > Computer](**https://mohsensafari83.github.io/Mano-Vision/**)
 
-|                                      |                                                               |     |
-| ------------------------------------ | ------------------------------------------------------------- | --- |
-| ![Modules tab](./assets/modules.png) | ![System architecture view](./assets/System-Architecture.png) |     |
+### Individual Modules
 
-_Left: the "Individual Modules" tab, where each component (registers, ALU, memory, bus...) can be explored on its own. Right: the live System Architecture diagram — registers, common bus, ALU, memory, and I/O — that animates as a program runs._
+<p align="center">
+  <img src="./assets/modules.png" alt="Individual Modules" width="800">
+</p>
 
+_Explore individual components such as registers, ALU, memory, bus, and control unit._
+
+### System Architecture
+
+<p align="center">
+  <img src="./assets/System-Architecture.png" alt="System Architecture" width="800">
+</p>
+
+_The complete Basic Computer architecture, including registers, common bus, ALU, memory, and I/O._
+
+### Signal Oscilloscope
+
+<p align="center">
+  <img src="./assets/signal.png" alt="ignal Oscilloscope" width="800">
+</p>
+The Signal Oscilloscope visualizes control signals and internal activity
+across T-states, making the micro-operation sequence of each instruction
+easy to inspect.
 ---
 
 ## Table of contents
@@ -53,22 +71,18 @@ _Left: the "Individual Modules" tab, where each component (registers, ALU, memor
 ## 1. Project structure
 
 ```
-mano-vision/
-├── main.c            Entry point; detects the run mode (shell / run / trace)
-├── mano_types.h       All core structs: Registers, Flags, ControlSignals, CPUState
-├── state.c / .h       CPU initialization, control-signal reset, decode helpers, register/memory printing
-├── bus.c / .h         Common-bus logic: source selection (S_BUS) and Load/Increment/Clear on registers
-├── memory.c / .h      Memory Read/Write based on AR and the READ/WRITE control bits
-├── alu.c / .h         Arithmetic/logic unit: AND, ADD, LDA, CMA, CME, CIR, CIL, INC
-├── io.c / .h          Console-based input/output device simulation (INP/OUT)
-├── control.c / .h     Control unit: fetch–decode–execute, three execute paths (memory-ref / register-ref / I/O)
-├── assembler.c / .h   Two-pass assembler: turns a .asm file into machine code in cpu.memory
-├── trace.c / .h       Writes a JSON record for every micro-operation
-├── shell.c / .h       Interactive command-line shell (REPL)
-├── Makefile           (suggested — see below)
-└── examples/
-    ├── sum_two_numbers.asm
-    └── sum_array_isz.asm
+Mano-Vision/
+├── assets/          # Screenshots and visual assets
+├── css/             # Stylesheets
+├── docs/            # Architecture and documentation
+├── examples/        # Mano Basic Computer programs
+├── js/              # Web simulator implementation
+├── simulator/       # C implementation
+│   ├── include/     # Header files
+│   └── src/         # C source files
+├── index.html
+├── Makefile
+└── README.md
 ```
 
 ### File-to-textbook-chapter mapping
@@ -467,15 +481,12 @@ Note: steps performed by `alu_operation()` that don't go through `micro_step()` 
 
 ---
 
-## 10. Known issues and limitations
+## 10. Known Limitations
 
-The following is a list of things I noticed while reading through the code that are worth double-checking yourself — they may have been intentional, but since they affect actual program behavior, they're worth documenting:
-
-- **`BSA` (`control.c`, the `D[5]` block)** — the current order of the four micro-operations is: `TR<-PC`, `AR<-AR+1`, then `S_BUS=5` with `LD_PC=1` (which, per the table in section 2, means "`PC <- TR`", not "`PC <- AR`"), and finally a memory write with `S_BUS=0` (meaning the bus value from `bus_update` becomes `AR`) — even though `cpu.bus_value = r->TR` had just been set right before, that value gets overwritten by the very first line inside `micro_step` (i.e. `bus_update()`), since `S_BUS=0` at that point. The practical result: the jump target ends up being the return address (`TR`) rather than the subroutine address, and the value written to memory is `AR` rather than `TR`. If you intended the standard `BSA` behavior (save the return address in `M[AR]`, then `PC <- AR`), take another look at this block.
-- **`SC` (Sequence Counter)** — defined in `mano_types.h` and `bus.c` (`INCR_SC`, `CLR_SC`), but never explicitly incremented anywhere in `control.c`; the T-state ordering is implemented via sequential `micro_step()` calls in the C code rather than a real counter checked in a loop. In other words, the `SC` register is kept mostly for display/tracing purposes rather than being used in actual decision logic.
-- **Interrupt cycle** — the `IEN`/`FGI`/`FGO`/`R` flags are defined and `ION`/`IOF`/`SKI`/`SKO` work, but the automatic check of `IEN·(FGI+FGO)` at the end of each instruction cycle (and the interrupt cycle itself) is not implemented in `cpu_step`/`cpu_run`. For now, the only way to react to I/O devices is manual polling with `SKI`/`SKO`.
-- **`D[7]` array not fully cleared between consecutive ALU calls** — `alu_operation()` acts based on the _current_ value of the `ControlSignals` bits (e.g. `c->AND`); since this struct is immediately zeroed with `state_reset_control()` right after each use, there's no issue in the normal code flow — it would only matter if `alu_operation()` were ever called somewhere without a preceding `state_reset_control()`.
-- **`SC` register stored as part of `Registers`, not a standalone 3-bit counter** — in `mano_types.h` it's a `uint16_t`, not 3 bits as in Chapter 5 of the textbook; this is simply an implementation choice, not a bug, but it would need masking to match the textbook's hardware exactly.
+- Interrupt cycle is not fully implemented.
+- `SC` is represented for tracing/display but does not drive execution.
+- `BSA` behavior currently differs from the standard Mano micro-operation sequence.
+- The assembler performs limited validation for malformed input.
 
 ---
 
