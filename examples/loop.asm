@@ -1,0 +1,17 @@
+; Countdown from 5 to 0, printing each value
+ORG 100
+
+LDA FIVE
+STA COUNT
+
+LOOP, LDA COUNT
+OUT
+ISZ COUNT
+BUN LOOP
+
+HLT
+
+FIVE, DEC -5
+COUNT, DEC 0
+
+END

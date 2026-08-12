@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mano Sim — Basic Computer Simulator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/simulator.css">
+<link rel="stylesheet" href="css/modules.css">
+<link rel="stylesheet" href="css/blog.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">
+    <div class="logo">M</div>
+    <div class="names"><b>Mano Sim</b><span>Basic Computer</span></div>
+  </div>
+  <div class="nav-links">
+    <a href="#" class="nav-link active" data-tab="home">Home</a>
+    <a href="#" class="nav-link" data-tab="computer">Basic Computer</a>
+    <a href="#" class="nav-link" data-tab="modules">Modules</a>
+    <a href="#" class="nav-link" data-tab="blog">Blog</a>
+  </div>
+  <div class="nav-right">
+    <button class="theme-btn" id="themeBtn" title="Toggle theme">◐</button>
+    <button class="btn primary" data-tab="computer">▶ Launch Simulator</button>
+  </div>
+</nav>
+
+<!-- ================= HOME TAB ================= -->
+<div class="tab-page active" id="tab-home">
+
+  <div class="hero">
+    <div>
+      <span class="eyebrow">Interactive Hardware-Level Simulator</span>
+      <h1>Visualize the Mano Basic<br><span class="grad-text">Computer</span></h1>
+      <p class="lead">An interactive, hardware-level simulator that brings Morris Mano's Basic Computer Architecture to life. Watch data move. Understand every micro-operation.</p>
+      <div class="btn-row">
+        <button class="btn primary" data-tab="modules">Explore Modules ▾</button>
+      </div>
+      <div class="stat-chips">
+        <span class="stat-chip">&lt;/&gt; Built for Learning</span>
+        <span class="stat-chip">⚡ Hardware Accurate</span>
+        <span class="stat-chip">◈ Interactive &amp; Fast</span>
+      </div>
+    </div>
+    <div class="mini-diagram-wrap">
+      <svg id="miniDiagram" viewBox="0 0 620 480" xmlns="http://www.w3.org/2000/svg"></svg>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-tag">WHY CHOOSE MANO SIM?</div>
+    <h2 class="section-title">Designed for Deep Understanding</h2>
+    <div class="feature-grid">
+      <div class="feature-card"><div class="ic">👁</div><h4>See the Real Hardware</h4><p>Follow data as it moves through registers, bus, memory and ALU just like real hardware.</p></div>
+      <div class="feature-card"><div class="ic">⧉</div><h4>Micro-Operation Level</h4><p>Step through every micro-operation and understand how each instruction is executed.</p></div>
+      <div class="feature-card"><div class="ic">◆</div><h4>Interactive &amp; Visual</h4><p>Animated data flow, highlighted signals, and visual feedback for every operation.</p></div>
+      <div class="feature-card"><div class="ic">&lt;/&gt;</div><h4>Accurate &amp; Reliable</h4><p>Built on a real CPU emulator in JavaScript. All visuals are driven by actual execution trace.</p></div>
+      <div class="feature-card"><div class="ic">🎓</div><h4>Built for Education</h4><p>Perfect for students, educators, and anyone who wants to truly understand computer architecture.</p></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="action-section">
+      <div>
+        <div class="section-tag" style="text-align:left;">VISUAL EXECUTION</div>
+        <h2 style="font-size:26px;font-weight:800;margin:0 0 8px;">See It In Action</h2>
+        <p style="color:var(--muted);font-size:13.5px;line-height:1.7;">From fetch cycle to execution, watch how instructions flow through the Basic Computer.</p>
+        <div class="check-list">
+          <div class="check-item"><span class="dot">✓</span> Step-by-step execution</div>
+          <div class="check-item"><span class="dot">✓</span> Live data movement on a real common bus</div>
+          <div class="check-item"><span class="dot">✓</span> Control signal visualization</div>
+          <div class="check-item"><span class="dot">✓</span> Memory read/write highlights</div>
+          <div class="check-item"><span class="dot">✓</span> ALU operations with real values</div>
+        </div>
+      </div>
+      <div class="preview-frame">
+        <div class="bar"><span class="dotc"></span><span class="dotc"></span><span class="dotc"></span></div>
+        <svg id="previewDiagram" viewBox="0 0 620 480" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;"></svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-tag">POWERFUL FEATURES</div>
+    <h2 class="section-title">Everything You Need</h2>
+    <div class="feature-grid2">
+      <div class="feature-card"><div class="ic">&lt;/&gt;</div><h4>Integrated Assembler</h4><p>Write and assemble Mano assembly programs directly in the simulator.</p></div>
+      <div class="feature-card"><div class="ic">▦</div><h4>Memory Editor</h4><p>Browse memory, jump to any address, and watch live reads/writes.</p></div>
+      <div class="feature-card"><div class="ic">≋</div><h4>Execution Timeline</h4><p>Track every micro-operation with a detailed, scrollable execution log.</p></div>
+      <div class="feature-card"><div class="ic">▤</div><h4>Multiple Examples</h4><p>Explore built-in sample programs — sum, countdown, and multiplication.</p></div>
+      <div class="feature-card"><div class="ic">▢</div><h4>Signal Oscilloscope</h4><p>See control signals and the clock as real square waves, cycle by cycle.</p></div>
+      <div class="feature-card"><div class="ic">◐</div><h4>Dark &amp; Light Themes</h4><p>Switch themes any time — every diagram adapts automatically.</p></div>
+    </div>
+  </div>
+
+  <div class="cta-bar">
+    <div class="l">
+      <div class="ic">▣</div>
+      <div><h4>Ready to Explore the Inner Workings?</h4><p>Start your journey into computer architecture with Mano Sim.</p></div>
+    </div>
+    <span class="mono" style="font-size:12px;color:var(--muted2);">↗ Launch Simulator is in the top-right corner</span>
+  </div>
+
+  <footer class="foot">MANO SIM · educational Basic Computer simulator · plain HTML/CSS/JS</footer>
+</div>
+<!-- ================= /HOME TAB ================= -->
+
+<!-- ================= BASIC COMPUTER TAB ================= -->
+<div class="tab-page" id="tab-computer">
+  <div class="bc-wrap">
+    <div class="bc-head">
+      <h2>Basic Computer</h2>
+      <span class="badge-run" id="runBadge">Running</span>
+    </div>
+    <p class="bc-sub">Complete Morris Mano Basic Computer with all components integrated</p>
+
+    <div class="status-readout mono" id="statusReadout"></div>
+
+    <div class="main-grid">
+      <div class="main">
+
+        <div class="panel">
+          <div class="section-head">
+            <h3>System Architecture</h3>
+            <p>Complete Basic Computer with all registers, memory and the common bus</p>
+          </div>
+          <div class="diagram-legend">
+            <span class="legend-item"><span class="legend-dot" style="background:var(--blue);color:var(--blue);"></span>Load</span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--green);color:var(--green);"></span>Read</span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--amber);color:var(--amber);"></span>Write</span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--purple);color:var(--purple);"></span>ALU op</span>
+            <span class="legend-item"><span class="legend-dot" style="background:var(--red);color:var(--red);"></span>Halt</span>
+          </div>
+          <div class="diagram-scroll">
+            <svg id="cpuDiagram" viewBox="0 0 760 510" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="arrowHead" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+                  <path d="M0,0 L8,4 L0,8 Z" fill="var(--border)"></path>
+                </marker>
+              </defs>
+              <text class="section-label" x="115" y="84">REGISTERS</text>
+              <text class="section-label" x="645" y="84">MEMORY · ALU · I/O</text>
+              <g id="regLayer"></g>
+              <line id="busTrunk" class="bus-trunk" x1="380" y1="86" x2="380" y2="450"></line>
+              <text class="bus-label-txt" x="380" y="97">COMMON BUS · 16-bit</text>
+              <text class="bus-select-txt" id="busSelTxt" x="380" y="110">S2 S1 S0 = — — —</text>
+              <g id="ctrlLayer"></g>
+              <g id="flowLayer"></g>
+            </svg>
+          </div>
+          <div class="diagram-info" id="diagramInfo">Tap or click any block to see what it does.</div>
+          <div class="flag-row" id="flagRow"></div>
+        </div>
+
+        <div class="panel">
+          <div class="section-head">
+            <h3>Instruction Decoder</h3>
+            <p id="decoderInfo" class="mono">IR = ----&nbsp; I=0 &nbsp; Opcode=0 &nbsp; Addr=000</p>
+          </div>
+          <div class="decoder-bits" id="decoderBits"></div>
+          <div class="d-lines" id="dLines"></div>
+        </div>
+
+        <div class="panel">
+          <div class="section-head"><h3>Live Control Signals</h3><p>Any signal active this cycle is highlighted</p></div>
+          <div class="sig-grid" id="sigGrid"></div>
+        </div>
+
+        <div class="panel">
+          <div class="section-head"><h3>Memory</h3><p>4096 × 16-bit</p></div>
+          <div class="mem-toolbar">
+            <span class="hint">Jump to address:</span>
+            <input type="text" id="memJump" placeholder="e.g. 100" class="mono">
+            <button class="btn" id="memJumpBtn">Go</button>
+            <button class="btn" id="memFollowBtn">Follow PC</button>
+          </div>
+          <div class="mem-scroll"><table class="mem-table" id="memTable"></table></div>
+        </div>
+
+        <div class="panel">
+          <div class="collapsible-head" id="editorToggle">
+            <div class="section-head" style="margin:0;"><h3>Custom Assembly Program</h3><p style="margin:0;">Write and assemble your own program</p></div>
+            <span class="arrow">▸</span>
+          </div>
+          <div class="collapsible-body" id="editorBody">
+            <textarea id="asmSrc" class="mono" spellcheck="false"></textarea>
+            <div class="btn-row" style="margin-top:10px;"><button class="btn primary" id="assembleBtn">Assemble &amp; Load</button></div>
+            <div id="asmMsg"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="sidebar">
+        <div class="panel">
+          <div class="section-head"><h3>Execution Controls</h3><p>Step through or auto-run programs</p></div>
+          <div class="btn-row">
+            <button class="btn primary" id="stepBtn" style="flex:1;">▷ Step</button>
+            <button class="btn" id="resetBtn" style="flex:1;">↺ Reset</button>
+          </div>
+          <div class="toggle-row">
+            <span>Auto-run</span>
+            <label class="switch"><input type="checkbox" id="autoRunToggle"><span class="track"><span class="thumb"></span></span></label>
+          </div>
+          <div class="speed-row">
+            <div class="row-top"><span>Speed</span><span id="speedLabel">500ms</span></div>
+            <input type="range" id="speedRange" min="60" max="1500" step="20" value="500">
+          </div>
+          <div class="btn-row" style="margin-top:14px;"><button class="btn danger" id="haltBtn" style="flex:1;">⏻ Halt</button></div>
+        </div>
+
+        <div class="panel">
+          <div class="section-head"><h3>Load Sample Program</h3></div>
+          <select id="sampleSelect">
+            <option value="">Select a program…</option>
+            <option value="sum">Add Two Numbers</option>
+            <option value="count">Countdown</option>
+            <option value="mul">Multiply (repeated addition)</option>
+          </select>
+        </div>
+
+        <div class="panel">
+          <div class="section-head"><h3>Keyboard Shortcuts</h3></div>
+          <div class="shortcut-list">
+            <div class="shortcut-row"><span>Step</span><span class="key-badge">Space</span></div>
+            <div class="shortcut-row"><span>Auto-run</span><span class="key-badge">A</span></div>
+            <div class="shortcut-row"><span>Reset</span><span class="key-badge">R</span></div>
+            <div class="shortcut-row"><span>Halt / Resume</span><span class="key-badge">H</span></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="section-head"><h3>Current State</h3></div>
+          <div class="state-list">
+            <div class="state-row"><span>Timing State</span><span class="v mono" id="stTiming">T0</span></div>
+            <div class="state-row"><span>Machine State</span><span class="v mono" id="stMachine">idle</span></div>
+            <div class="state-row"><span>Opcode</span><span class="v mono" id="stOpcode">0</span></div>
+            <div class="state-row"><span>Indirect</span><span class="v mono" id="stIndirect">No</span></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="section-head"><h3>Input / Output</h3></div>
+          <input type="text" id="inprBox" placeholder="INP value (0-255)" class="mono" style="width:100%;">
+          <div class="hint" style="margin:10px 0 4px;">OUT log:</div>
+          <div class="output-box mono" id="outputBox"></div>
+        </div>
+
+        <div class="panel">
+          <div class="section-head"><h3>Micro-Operations Timeline</h3></div>
+          <div class="log-box" id="microLog"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="scope-fab" id="openScopeBtn">
+    <svg width="16" height="12" viewBox="0 0 24 16" fill="none"><path d="M0 8 H4 L7 2 L10 14 L13 4 L16 12 L19 8 H24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Signal Scope
+  </button>
+  <div class="scope-drawer" id="scopeDrawer">
+    <div class="scope-head">
+      <div class="title">◈ SIGNAL SCOPE</div>
+      <div class="scope-toolbar">
+        <span class="tiny" id="scopeInfo">0 samples</span>
+        <button class="btn ghost" id="scopeFollowBtn">Follow ✓</button>
+        <button class="btn ghost" id="scopeClearBtn">Clear</button>
+        <button class="btn ghost" id="closeScopeBtn">✕ Close</button>
+      </div>
+    </div>
+    <div class="scope-body">
+      <div class="scope-canvas-wrap"><canvas id="scopeCanvas"></canvas></div>
+      <div class="scope-legend" id="scopeLegend"></div>
+    </div>
+  </div>
+</div>
+<!-- ================= /BASIC COMPUTER TAB ================= -->
+
+<!-- ================= MODULES TAB ================= -->
+<div class="tab-page" id="tab-modules">
+  <div class="modules-wrap">
+
+    <div id="modulesList">
+      <div class="modules-head">
+        <h2>Individual Modules</h2>
+        <p>Explore each component of the Basic Computer in isolation — see how it works, then test it yourself.</p>
+      </div>
+      <div class="mod-grid" id="modGrid"></div>
+    </div>
+
+    <div id="modDetailView" class="mod-detail">
+      <div class="mod-back" id="modBackBtn">← Back to Modules</div>
+      <div class="panel">
+        <div class="section-head">
+          <h3 id="modTitle" class="mono">PC — Program Counter</h3>
+          <p id="modDesc"></p>
+        </div>
+        <div class="mod-detail-grid">
+          <div>
+            <div id="modDiagram" class="hw-module"></div>
+            <div class="bit-cells" id="modBitCells"></div>
+          </div>
+          <div>
+            <div id="modControls"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- ================= /MODULES TAB ================= -->
+
+<!-- ================= BLOG TAB ================= -->
+<div class="tab-page" id="tab-blog">
+  <div class="blog-wrap">
+    <header class="blog-head">
+      <p class="blog-kicker">Computer Architecture Notebook · Chapters 4–5</p>
+      <h1 class="blog-serif">From a Flip-Flop to a Running Program</h1>
+      <p class="blog-sub">A ground-up walkthrough of Morris Mano's <i>Basic Computer</i>: how registers move data over one shared bus, how an ALU is built from arithmetic, logic and shift hardware, and how a control unit turns sixteen bits of instruction into a sequence of timed micro-operations. Every figure links to the matching interactive module in the simulator, so you can step through the real hardware, not just read about it.</p>
+      <div class="blog-head-rule"></div>
+    </header>
+
+    <nav class="blog-toc">
+      <p class="blog-toc-head">Contents</p>
+      <div class="blog-toc-grid">
+        <p class="blog-toc-part">Chapter 4 — Register Transfer &amp; Micro-Operations</p>
+        <a href="#s-40"><span class="n">4.0</span> Micro-operations &amp; timing</a>
+        <a href="#s-41"><span class="n">4.1</span> The wiring problem</a>
+        <a href="#s-42"><span class="n">4.2</span> The common bus</a>
+        <a href="#s-43"><span class="n">4.3</span> Memory transfer</a>
+        <a href="#s-44"><span class="n">4.4</span> Arithmetic micro-operations</a>
+        <a href="#s-45"><span class="n">4.5</span> Logic micro-operations</a>
+        <a href="#s-46"><span class="n">4.6</span> Shift micro-operations</a>
+        <a href="#s-47"><span class="n">4.7</span> The ALU</a>
+        <p class="blog-toc-part">Chapter 5 — Basic Computer Organization</p>
+        <a href="#s-50"><span class="n">5.0</span> System organization</a>
+        <a href="#s-51"><span class="n">5.1</span> Registers &amp; instruction format</a>
+        <a href="#s-52"><span class="n">5.2</span> Generating timing signals</a>
+        <a href="#s-53"><span class="n">5.3</span> The fetch cycle</a>
+        <a href="#s-54"><span class="n">5.4</span> Decoding the instruction</a>
+        <a href="#s-55"><span class="n">5.5</span> Indirect addressing</a>
+        <a href="#s-56"><span class="n">5.6</span> Memory-reference execution</a>
+        <a href="#s-57"><span class="n">5.7</span> Register-reference instructions</a>
+        <a href="#s-58"><span class="n">5.8</span> Input–output instructions</a>
+        <a href="#s-59"><span class="n">5.9</span> The interrupt cycle</a>
+        <a href="#s-510"><span class="n">5.10</span> The complete instruction cycle</a>
+      </div>
+    </nav>
+
+    <article class="blog-post" id="post-4">
+      <p class="blog-chapter-tag">Chapter 4</p>
+      <h2 class="blog-chapter-title blog-serif">Register Transfer &amp; Micro-Operations</h2>
+      <p class="blog-lead"><span class="blog-drop">A</span> processor is, at bottom, a set of registers and a handful of circuits that move bits between them. Chapter 4 builds the vocabulary for that movement — the notation, the shared wiring, and the arithmetic/logic/shift hardware — so that Chapter 5 can describe a whole computer as nothing more than a long, precisely timed list of these movements.</p>
+
+      <h3 class="blog-h2sec" id="s-40"><span class="num">4.0</span>Micro-operations &amp; Timing</h3>
+      <p class="blog-p">A <b>micro-operation</b> is the smallest operation a processor performs in a single clock period: copying a register, adding two registers, shifting one bit left. An instruction like <span class="mono">ADD</span> is not itself a micro-operation — it is a short sequence of them, spread across several clock periods. Everything in this chapter, and everything the control unit does in Chapter 5, is built by combining micro-operations.</p>
+
+      <h4 class="blog-h3sec">Register transfer notation</h4>
+      <p class="blog-p">We write a transfer with an arrow, source on the right:</p>
+      <div class="blog-key"><span class="tag">Notation</span><span class="mono">R2 &larr; R1</span> means: copy the contents of R1 into R2. R1 is left unchanged; whatever R2 held is overwritten. Nothing happens to any other register.</p></div>
+      <p class="blog-p">Most transfers only happen when some condition holds — a control signal must be 1. That condition is written before a colon, as a statement, not as part of the transfer itself:</p>
+      <div class="blog-key"><span class="tag">Conditional transfer</span><span class="mono">T3: R2 &larr; R1</span> means: <i>if</i> timing signal T3 is currently 1, <i>then</i> copy R1 into R2 on this clock edge. If T3 is 0, R2 keeps its old value.</div>
+      <p class="blog-p">A comma separates micro-operations that happen <b>at the same clock edge</b>, from the same condition:</p>
+      <div class="blog-key"><span class="tag">Simultaneous transfer</span><span class="mono">T3: R2 &larr; R1,&nbsp; R1 &larr; R2</span> swaps R1 and R2 in one clock period — this is only correct because of how clocking works, explained next.</div>
+
+      <h4 class="blog-h3sec">Why the swap works: edge-triggered clocking</h4>
+      <p class="blog-p">Every register here is built from D flip-flops. A flip-flop has a data input, a <span class="mono">Load</span> (or "enable") control input, and a clock input. Its output only changes at the <b>rising edge</b> of the clock, and only if <span class="mono">Load</span> was 1 during the clock period leading up to that edge. Two consequences follow directly from this, and both matter constantly from here on:</p>
+      <ul class="blog-list">
+        <li><b>Nothing changes mid-cycle.</b> Every register reads its inputs continuously, but the output only updates at the edge — so during one whole clock period, a register's output is a stable, known value that the rest of the circuit can safely use.</li>
+        <li><b>Simultaneous transfers see the old values.</b> In <span class="mono">R2 &larr; R1, R1 &larr; R2</span>, both flip-flop banks latch their new data at the <i>same</i> edge, from the values R1 and R2 held <i>before</i> that edge. Neither register's update can "leak" into the other's input first — the swap is correct by construction, not by luck.</li>
+      </ul>
+      <p class="blog-p">The figure below shows exactly this: <span class="mono">Load(R2)</span> is held at 1 for one full clock period, but R2's output does not change until the following rising edge — that's the instant, and the only instant, the new value takes effect.</p>
+
+      <figure class="blog-fig">
+        <div class="fig-eyebrow"><span class="fig-num">FIG. 4-1</span></div>
+        <p class="fig-teach">Loading a register is not instantaneous — it's a <b>pulse held across one clock period, resolved at the next edge.</b> This is the mechanical reason a condition like "T3" can safely gate a transfer.</p>
+        <div class="fig-stage">
+<svg class="dgm" viewBox="0 0 680 210" xmlns="http://www.w3.org/2000/svg">
+  <text class="tag-mono" x="8" y="24">CLK</text>
+  <path class="wire" d="M50,20 L90,20 L90,8 L160,8 L160,20 L230,20 L230,8 L300,8 L300,20 L370,20 L370,8 L440,8 L440,20 L510,20 L510,8 L580,8 L580,20 L630,20"/>
+  <line class="dim" x1="160" y1="0" x2="160" y2="190" stroke-dasharray="2 3"/>
+  <line class="dim" x1="300" y1="0" x2="300" y2="190" stroke-dasharray="2 3"/>
+  <line class="dim" x1="440" y1="0" x2="440" y2="190" stroke-dasharray="2 3"/>
+
+  <text class="tag-mono" x="8" y="74">Load(R2)</text>
+  <path class="ctrl-a" d="M50,90 L160,90 L160,60 L440,60 L440,90 L630,90"/>
+  <text class="tag" x="180" y="52" fill="var(--bp-act)">Load = 1 for one full clock period</text>
+
+  <text class="tag-mono" x="8" y="134">R2 output</text>
+  <path class="wire-a" d="M50,120 L160,120"/>
+  <path class="wire" d="M160,120 L160,150 L440,150"/>
+  <path class="wire-a" d="M440,150 L440,120 L630,120"/>
+  <text class="tag" x="55" y="112">old value</text>
+  <text class="tag" x="450" y="112" fill="var(--bp-data)">new value (= R1)</text>
+
+  <circle cx="440" cy="15" r="4" fill="var(--bp-data)"/>
+  <text class="tag-mono" x="452" y="20" fill="var(--bp-data)">edge R2 actually updates</text>
+  <line x1="440" y1="20" x2="440" y2="120" stroke="var(--bp-data)" stroke-width="1.2" stroke-dasharray="2 2"/>
+</svg>
+        </div>
+        <p class="blog-cap">Load(R2) rises at the first marked edge and stays high for one period; R2's output only changes at the <b>next</b> edge, taking on R1's value at that instant. The middle edge (Load still high) changes nothing new — R2 was already loading the same source.</p>
+      </figure>
+
+      <h3 class="blog-h2sec" id="s-41"><span class="num">4.1</span>The Wiring Problem</h3>
+      <p class="blog-p">Suppose we have eight registers and want any one of them to be able to transfer into any other. Wiring a dedicated path between every pair takes <span class="mono">n(n&minus;1)</span> directed connections — 56 separate wires for 8 registers, each needing its own driver and its own destination-select logic. That does not scale, and most of those paths are used only rarely. The fix used in every real processor is to give every register access to <b>one shared communication path</b> — a <b>bus</b> — and add control logic that lets exactly one register write to it at a time.</p>
+
+      <h3 class="blog-h2sec" id="s-42"><span class="num">4.2</span>The Common Bus</h3>
+      <p class="blog-p">A bus is just a set of wires (16 of them, one per bit, for a 16-bit machine) that every register can potentially drive. The entire discipline of bus design comes down to one rule:</p>
+      <div class="blog-key"><span class="tag">The one rule</span>At any instant, <b>at most one</b> source may actively drive the bus. Every other register must present a high-impedance (disconnected) output, or its data would collide electrically with the active source.</div>
+      <p class="blog-p">There are two standard ways to enforce that rule in hardware.</p>
+
+      <h4 class="blog-h3sec">Three-state buffers (used in the Basic Computer)</h4>
+      <p class="blog-p">Each register's output passes through a <b>three-state buffer</b> before reaching the bus. Unlike an ordinary gate, a three-state buffer has three possible outputs: logic 0, logic 1, and <b>high-impedance (Hi-Z)</b> — electrically equivalent to being unplugged. A separate <b>enable</b> line per buffer decides which state applies: enable = 1 passes the data through, enable = 0 forces Hi-Z. A small decoder converts a binary <b>select code</b> into exactly one active enable line, guaranteeing the one rule above is satisfied by construction — the decoder physically cannot assert two outputs at once.</p>
+
+      <figure class="blog-fig">
+        <div class="fig-eyebrow"><span class="fig-num">FIG. 4-2</span></div>
+        <p class="fig-teach">Teaching objective: <b>only one register drives the bus.</b> Everything else in this diagram — the decoder, the enable lines, the ghosted registers — exists to make that fact unmistakable.</p>
+        <div class="fig-stage">
+<svg class="dgm" viewBox="0 0 740 400" xmlns="http://www.w3.org/2000/svg">
+  <rect class="reg" x="30" y="20"  width="112" height="44" rx="1"/>
+  <text class="lbl" x="86" y="47" text-anchor="middle">R1</text>
+  <rect class="reg-a" x="30" y="94" width="112" height="44" rx="1"/>
+  <text class="lbl lbl-a" x="86" y="121" text-anchor="middle">R2</text>
+  <rect class="reg" x="30" y="168" width="112" height="44" rx="1"/>
+  <text class="lbl" x="86" y="195" text-anchor="middle">R3</text>
+  <rect class="reg" x="30" y="242" width="112" height="44" rx="1"/>
+  <text class="lbl" x="86" y="269" text-anchor="middle">R4</text>
+  <text class="sub" x="86" y="10" text-anchor="middle">16-BIT REGISTERS</text>
+
+  <line class="wire-d" x1="142" y1="42" x2="210" y2="42"/>
+  <line class="wire-a" x1="142" y1="116" x2="210" y2="116"/>
+  <line class="wire-d" x1="142" y1="190" x2="210" y2="190"/>
+  <line class="wire-d" x1="142" y1="264" x2="210" y2="264"/>
+
+  <polygon class="box" points="210,29 210,55 248,42"/>
+  <text class="tag" x="256" y="46" fill="var(--bp-ink3)">Hi-Z</text>
+  <polygon class="box" points="210,103 210,129 248,116" fill="var(--bp-data-t)" stroke="var(--bp-data)" stroke-width="1.6"/>
+  <polygon class="box" points="210,177 210,203 248,190"/>
+  <text class="tag" x="256" y="194" fill="var(--bp-ink3)">Hi-Z</text>
+  <polygon class="box" points="210,251 210,277 248,264"/>
+  <text class="tag" x="256" y="268" fill="var(--bp-ink3)">Hi-Z</text>
+
+  <line class="wire-d" x1="248" y1="42"  x2="330" y2="42"/>
+  <line class="wire-a" x1="248" y1="116" x2="330" y2="116"/>
+  <line class="wire-d" x1="248" y1="190" x2="330" y2="190"/>
+  <line class="wire-d" x1="248" y1="264" x2="330" y2="264"/>
+
+  <line class="bus-mute" x1="330" y1="42" x2="330" y2="264"/>
+  <line class="bus" x1="330" y1="116" x2="330" y2="116"/>
+
+  <line class="bus" x1="330" y1="116" x2="630" y2="116"/>
+  <text class="tag-mono" x="345" y="102" fill="var(--bp-data)">COMMON BUS — driven by R2</text>
+
+  <line class="wire-a" x1="630" y1="116" x2="668" y2="116"/>
+  <polygon points="668,110 684,116 668,122" fill="var(--bp-data)"/>
+  <text class="sub" x="705" y="102" text-anchor="middle">to AC,</text>
+  <text class="sub" x="705" y="114" text-anchor="middle">DR, ALU…</text>
+
+  <rect class="box-c" x="210" y="330" width="140" height="52" rx="1"/>
+  <text class="lbl" x="280" y="352" text-anchor="middle" font-size="11">2×4 DECODER</text>
+  <text class="sub" x="280" y="368" text-anchor="middle">SELECT = 01</text>
+
+  <line class="ctrl" x1="210" y1="345" x2="176" y2="345"/>
+  <line class="ctrl" x1="210" y1="367" x2="176" y2="367"/>
+  <text class="tag-mono" x="128" y="349">S1</text>
+  <text class="tag-mono" x="128" y="371">S0</text>
+
+  <line class="ctrl" x1="228" y1="330" x2="228" y2="55" opacity=".5"/>
+  <line class="ctrl-a" x1="246" y1="330" x2="246" y2="116"/>
+  <line class="ctrl" x1="264" y1="330" x2="264" y2="203" opacity=".5"/>
+  <line class="ctrl" x1="282" y1="330" x2="282" y2="277" opacity=".5"/>
+  <text class="tag-mono" x="220" y="396" font-size="9">E1</text>
+  <text class="tag-mono" x="236" y="396" font-size="9" fill="var(--bp-act)" font-weight="700">E2=1</text>
+  <text class="tag-mono" x="260" y="396" font-size="9">E3</text>
+  <text class="tag-mono" x="277" y="396" font-size="9">E4</text>
+</svg>
+        </div>
+        <p class="blog-cap">Select = 01 makes the decoder assert only E2. R2's buffer becomes an active driver; R1, R3, and R4 are still wired to the bus but their buffers hold Hi-Z, which is electrically indistinguishable from being disconnected.</p>
+        <div class="fig-legend">
+          <span><i style="background:var(--bp-data)"></i>Active data path</span>
+          <span><i class="dash" style="color:var(--bp-ctrl)"></i>Select / enable</span>
+          <span><i style="background:var(--bp-ink3);opacity:.4"></i>Wired but Hi-Z</span>
+        </div>
+      </figure>
+
+      <h4 class="blog-h3sec">Multiplexers (an equally valid alternative)</h4>
+      <p class="blog-p">Instead of letting every register push onto a shared wire, a multiplexer-based bus makes the bus itself a bank of <b>MUX</b> gates — one per bit — each with an input from every register and a shared select code that chooses which register's bit reaches the output. There is no Hi-Z state anywhere; the MUX always outputs exactly one of its inputs. Electrically simpler to reason about, at the cost of needing a full <span class="mono">k</span>-input multiplexer per bit rather than one small buffer per register.</p>
+      <div class="blog-table-wrap">
+        <table class="blog-table">
+          <tr><th></th><th>Three-state buffer bus</th><th>Multiplexer bus</th></tr>
+          <tr><td><b>Idle state</b></td><td class="mono">Hi-Z (disconnected)</td><td class="mono">still drives a value</td></tr>
+          <tr><td><b>Hardware per bit</b></td><td>1 buffer per source</td><td>1 <span class="mono">k</span>-to-1 MUX</td></tr>
+          <tr><td><b>Failure mode if select logic breaks</b></td><td>bus floats or two drivers collide</td><td>bus always has some defined value</td></tr>
+          <tr><td><b>Used by</b></td><td>the Basic Computer (this course)</td><td>many real ALU/register-file designs</td></tr>
+        </table>
+      </div>
+      <p class="blog-p">Both implement the same abstraction — one shared 16-bit path, one active source at a time — so the RTL notation and the timing rules from this point on don't care which one sits underneath.</p>
+      <div class="blog-mod-links">
+        <button class="blog-mod-link" data-mod-link="BUS">Interactive module — Common Bus</button>
+      </div>
+
+      <h3 class="blog-h2sec" id="s-43"><span class="num">4.3</span>Memory Transfer</h3>
+      <p class="blog-p">Memory is treated as just another device on the bus, with one difference: you can't address "memory" directly the way you address a register — you first have to say <i>which word</i> of memory you mean. That's the job of the <b>Address Register (AR)</b>. The notation <span class="mono">M[AR]</span> means "the memory word currently addressed by AR," and it behaves exactly like a register name inside RTL statements:</p>
+      <div class="blog-key"><span class="tag">Notation</span><span class="mono">DR &larr; M[AR]</span> &nbsp;reads the word AR is pointing at into DR (a <b>memory read</b>).<br><span class="mono">M[AR] &larr; DR</span> &nbsp;writes DR's contents into the word AR is pointing at (a <b>memory write</b>).</div>
+      <p class="blog-p">Mechanically, memory has its own read/write control lines and its own timing: put an address on AR, assert Read or Write for one clock period, and the transfer completes. Memory is not conceptually different from a register on the bus — it's a very large one, selected by address instead of by name.</p>
+
+      <figure class="blog-fig">
+        <div class="fig-eyebrow"><span class="fig-num">FIG. 4-3</span></div>
+        <p class="fig-teach">Teaching objective: memory is <b>addressed, not named</b> — AR selects which of 4096 words the Read/Write control line acts on.</p>
+        <div class="fig-stage tight">
+<svg class="dgm" viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg">
+  <rect class="reg-a" x="20" y="20" width="90" height="42" rx="1"/>
+  <text class="lbl lbl-a" x="65" y="46" text-anchor="middle">AR</text>
+  <text class="sub" x="65" y="76" text-anchor="middle">12-bit address</text>
+
+  <rect class="reg" x="20" y="140" width="90" height="42" rx="1"/>
+  <text class="lbl" x="65" y="166" text-anchor="middle">DR</text>
+  <text class="sub" x="65" y="196" text-anchor="middle">16-bit data</text>
+
+  <rect class="box-m" x="220" y="30" width="220" height="150" rx="1"/>
+  <text class="lbl" x="330" y="60" text-anchor="middle" fill="var(--bp-mem)">MAIN MEMORY</text>
+  <text class="sub" x="330" y="78" text-anchor="middle">4096 words × 16 bits</text>
+  <line x1="240" y1="92" x2="420" y2="92" class="dim"/>
+  <text class="tag-mono" x="330" y="110" text-anchor="middle">M[AR]</text>
+  <text class="sub" x="330" y="126" text-anchor="middle">word currently addressed</text>
+  <rect class="box" x="270" y="140" width="120" height="24" opacity=".6"/>
+  <text class="tag-mono" x="330" y="156" text-anchor="middle" font-size="9.5">Read&nbsp;&nbsp;Write</text>
+
+  <line class="wire-a" x1="110" y1="41" x2="220" y2="41"/>
+  <text class="sub" x="165" y="34" text-anchor="middle">address</text>
+
+  <line class="wire" x1="330" y1="180" x2="330" y2="205" opacity=".6"/>
+  <line class="ctrl" x1="140" y1="205" x2="330" y2="205"/>
+  <text class="tag-mono" x="70" y="209">Read / Write</text>
+
+  <line class="wire-a" x1="220" y1="161" x2="110" y2="161"/>
+  <text class="sub" x="165" y="154" text-anchor="middle">data</text>
+
+  <line class="bus" x1="460" y1="105" x2="620" y2="105"/>
+  <text class="tag-mono" x="470" y="94" fill="var(--bp-data)">shared with bus</text>
+  <line class="wire-d" x1="440" y1="105" x2="460" y2="105"/>
+</svg>
+        </div>
+        <p class="blog-cap">AR carries the address into memory on a separate address path; Read or Write then moves one 16-bit word between memory and the bus in a single clock period, just like a register transfer.</p>
+      </figure>
+      <div class="blog-note"><span class="tag">Looking ahead</span>Chapter 5's entire fetch cycle is built from two of these: <span class="mono">AR &larr; PC</span> then <span class="mono">IR &larr; M[AR]</span>. Every memory-reference instruction — <span class="mono">AND, ADD, LDA, STA…</span> — ends the same way: one more <span class="mono">M[AR]</span> read or write.</div>
+      <div class="blog-mod-links">
+        <button class="blog-mod-link" data-mod-link="MEM">Interactive module — Main Memory</button>
+        <button class="blog-mod-link" data-mod-link="AR">Interactive module — Address Register</button>
+      </div>
+
+      <h3 class="blog-h2sec" id="s-44"><span class="num">4.4</span>Arithmetic Micro-Operations</h3>
+      <p class="blog-p">Four operations cover essentially every arithmetic micro-operation a basic processor needs, all performed between the accumulator and one operand register, with a carry <span class="mono">Cin / Cout</span> at the chip boundary:</p>
+      <div class="blog-table-wrap">
+        <table class="blog-table">
+          <tr><th>Symbolic</th><th>Micro-operation</th><th>Meaning</th></tr>
+          <tr><td class="mono">R &larr; R + 1</td><td>Increment</td><td>add one to a register</td></tr>
+          <tr><td class="mono">R &larr; R &minus; 1</td><td>Decrement</td><td>subtract one from a register</td></tr>
+          <tr><td class="mono">R3 &larr; R1 + R2</td><td>Add</td><td>binary addition, carry propagates</td></tr>
+          <tr><td class="mono">R3 &larr; R1 + R2&prime; + 1</td><td>Subtract</td><td>add the two's complement of R2</td></tr>
+        </table>
+      </div>
+      <p class="blog-p">Subtraction being written as "add the complement, plus one" isn't a notational trick — it's literally how the hardware does it, and it's why one circuit can implement both add and subtract with a single extra control input.</p>
+
+      <figure class="blog-fig">
+        <div class="fig-eyebrow"><span class="fig-num">FIG. 4-4</span></div>
+        <p class="fig-teach">Teaching objective: <b>one control bit, M, turns an adder into a subtractor</b> by simultaneously complementing every B input and injecting the "+1" as a carry-in.</p>
+        <div class="fig-stage tight">
+<svg class="dgm" viewBox="0 0 620 210" xmlns="http://www.w3.org/2000/svg">
+  <text class="tag-mono" x="20" y="24">A (n bits)</text>
+  <line class="wire" x1="20" y1="34" x2="120" y2="34"/>
+  <text class="tag-mono" x="20" y="94">B (n bits)</text>
+  <line class="wire" x1="20" y1="104" x2="80" y2="104"/>
+
+  <g transform="translate(80,80)">
+    <polygon class="box-c" points="0,0 0,48 44,48 44,36 60,24 44,12 44,0"/>
+    <text class="tag-mono" x="24" y="16" text-anchor="middle" font-size="9">XOR</text>
+    <text class="tag-mono" x="24" y="40" text-anchor="middle" font-size="9">×n</text>
+  </g>
+  <line class="wire" x1="140" y1="104" x2="200" y2="104"/>
+  <text class="tag" x="140" y="130" font-size="9.5">B&prime; when M=1</text>
+
+  <line class="ctrl-a" x1="20" y1="160" x2="102" y2="160" y2="160"/>
+  <line class="ctrl-a" x1="102" y1="160" x2="102" y2="128"/>
+  <text class="tag-mono" x="20" y="150">M</text>
+
+  <rect class="box" x="200" y="20" width="150" height="120" rx="2"/>
+  <text class="lbl" x="275" y="50" text-anchor="middle">n-BIT</text>
+  <text class="lbl" x="275" y="66" text-anchor="middle">PARALLEL</text>
+  <text class="lbl" x="275" y="82" text-anchor="middle">ADDER</text>
+  <line class="wire" x1="120" y1="34" x2="200" y2="34" />
+  <line class="ctrl-a" x1="102" y1="160" x2="200" y2="160" y2="120"/>
+  <line class="ctrl-a" x1="200" y1="120" x2="200" y2="112"/>
+  <text class="tag-mono" x="205" y="128" font-size="9" fill="var(--bp-act)">Cin = M</text>
+
+  <line class="bus" x1="350" y1="80" x2="470" y2="80"/>
+  <text class="tag-mono" x="360" y="68">SUM</text>
+  <line class="wire" x1="350" y1="130" x2="420" y2="130"/>
+  <text class="tag-mono" x="360" y="144" font-size="9.5">Cout</text>
+
+  <text class="tag" x="470" y="30" font-size="10.5">M = 0 → SUM = A + B (add)</text>
+  <text class="tag" x="470" y="48" font-size="10.5" fill="var(--bp-act)">M = 1 → SUM = A + B&prime; + 1 = A &minus; B</text>
+</svg>
+        </div>
+        <p class="blog-cap">M feeds both the XOR bank on B (producing B when M=0, B&prime; when M=1) and the adder's carry-in — exactly the "+1" that two's-complement subtraction needs. One control bit selects between two operations.</p>
+      </figure>
+      <div class="blog-note"><span class="tag">Where you'll see this again</span>Increment is not a special circuit of its own — it's the same adder with the second input forced to all-1s (which equals &minus;1) or, more simply, hardwired as +1 with B=0, Cin=1. In Chapter 5, <span class="mono">PC &larr; PC + 1</span> after every fetch is exactly this increment path, and <span class="mono">AR &larr; AR + 1</span> plays the same role during indirect addressing.</div>
+
+      <h3 class="blog-h2sec" id="s-45"><span class="num">4.5</span>Logic Micro-Operations</h3>
+      <p class="blog-p">Logic micro-operations act on registers <b>bit by bit, with no carry</b> — bit <i>i</i> of the result depends only on bit <i>i</i> of each operand. That's the whole difference between "A + B&prime;" (arithmetic, carries ripple) and "A &oplus; B" (logic, bits are independent), even though both use an XOR-like structure internally.</p>
+      <div class="blog-table-wrap">
+        <table class="blog-table">
+          <tr><th>Symbolic</th><th>Name</th></tr>
+          <tr><td class="mono">A &larr; A &and; B</td><td>AND</td></tr>
+          <tr><td class="mono">A &larr; A &or; B</td><td>OR</td></tr>
+          <tr><td class="mono">A &larr; A &oplus; B</td><td>XOR</td></tr>
+          <tr><td class="mono">A &larr; A&prime;</td><td>Complement (NOT)</td></tr>
+        </table>
+      </div>
+      <p class="blog-p">On their own these look like textbook boolean algebra. Their real value in a processor is as <b>bit-manipulation tools</b>: pick one register B as a "mask" made of 1s wherever you want to act, and 0s everywhere else, then combine it with A using the right operator.</p>
+
+      <div class="bitdemo">
+        <span class="bd-lbl">A</span><div class="bd-bits"><div class="bd-bit on">1</div><div class="bd-bit on">0</div><div class="bd-bit">0</div><div class="bd-bit on">1</div><div class="bd-bit">0</div><div class="bd-bit on">1</div><div class="bd-bit">0</div><div class="bd-bit on">1</div></div>
+        <span class="bd-lbl">mask</span><div class="bd-bits"><div class="bd-bit mask">0</div><div class="bd-bit mask">0</div><div class="bd-bit mask">1</div><div class="bd-bit mask">1</div><div class="bd-bit">0</div><div class="bd-bit">0</div><div class="bd-bit">0</div><div class="bd-bit">0</div></div>
+        <span class="bd-op">A &or; mask</span><div class="bd-bits"><div class="bd-bit on">1</div><div class="bd-bit on">0</div><div class="bd-bit hit">1</div><div class="bd-bit hit">1</div><div class="bd-bit">0</div><div class="bd-bit on">1</div><div class="bd-bit">0</div><div class="bd-bit on">1</div></div>
+      </div>
+      <p class="blog-cap" style="margin-top:2px"><b>Selective set (OR):</b> wherever the mask is 1, that bit of A is forced to 1, no matter what it was. Wherever the mask is 0, A passes through unchanged.</p>
+
+      <div class="bitdemo" style="margin-top:26px">
+        <span class="bd-lbl">A</span><div class="bd-bits"><div class="bd-bit on">1</div><div class="bd-bit on">0</div><div class="bd-bit">0</div><div class="bd-bit on">1</div><div class="bd-bit">0</div><div class="bd-bit on">1</div><div class="bd-bit">0</div><div class="bd-bit on">1</div></div>
+        <span class="bd-lbl">mask</span><div class="bd-bits"><div class="bd-bit mask">0</div><div class="bd-bit mask">0</div><div class="bd-bit mask">1</div><div class="bd-bit mask">1</div><div class="bd-bit">0</div><div class="bd-bit">0</div><div class="bd-bit">0</div><div class="bd-bit">0</div></div>
+        <span class="bd-op">A &oplus; mask</span><div class="bd-bits"><div class="bd-bit on">1</div><div class="bd-bit on">0</div><div class="bd-bit hit">1</div><div class="bd-bit hit">0</div><div class="bd-bit">0</div><div class="bd-bit on">1</div><div class="bd-bit">0</div><div class="bd-bit on">1</div></div>
+      </div>
+      <p class="blog-cap" style="margin-top:2px"><b>Selective complement (XOR):</b> wherever the mask is 1, that bit of A is flipped. Elsewhere, A is unchanged — this is the standard way to toggle status bits.</p>
+
+      <div class="bitdemo" style="margin-top:26px">
+        <span class="bd-lbl">A</span><div class="bd-bits"><div class="bd-bit on">1</div><div class="bd-bit on">0</div><div class="bd-bit">0</div><div class="bd-bit on">1</div><div class="bd-bit">0</div><div class="bd-bit on">1</div><div class="bd-bit">0</div><div class="bd-bit on">1</div></div>
+        <span class="bd-lbl">mask</span><div class="bd-bits"><div class="bd-bit mask">1</div><div class="bd-bit mask">1</div><div class="bd-bit mask">0</div><div class="bd-bit mask">0</div><div class="bd-bit mask">1</div><div class="bd-bit mask">1</div><div class="bd-bit mask">1</div><div class="bd-bit mask">1</div></div>
+        <span class="bd-op">A &and; mask</span><div class="bd-bits"><div class="bd-bit hit">1</div><div class="bd-bit">0</div><div class="bd-bit">0</div><div class="bd-bit">0</div><div class="bd-bit">0</div><div class="bd-bit hit">1</div><div class="bd-bit">0</div><div class="bd-bit hit">1</div></div>
+      </div>
+      <p class="blog-cap" style="margin-top:2px"><b>Selective clear / masking (AND):</b> wherever the mask is 0, that bit of A is forced to 0. Wherever the mask is 1, A passes through. This is exactly what the <span class="mono">AND</span> instruction gives a programmer direct access to.</p>
+
+      <div class="blog-note"><span class="tag">Insertion</span>To replace a whole field of bits (say, the low nibble) with a new value: first <b>mask-clear</b> that field with AND (mask = 0 over the field, 1 elsewhere), then <b>selective-set</b> the new bits in with OR. Two logic micro-operations, one field replaced — no arithmetic involved.</div>
+
+      <h3 class="blog-h2sec" id="s-46"><span class="num">4.6</span>Shift Micro-Operations</h3>
+      <p class="blog-p">A shift moves every bit of a register one position left or right. In hardware this is not computed — it's wired: each flip-flop's data input is simply connected to its neighbor's output rather than to combinational logic, so a "shift" is just a transfer that happens to be diagonal instead of straight across.</p>
+      <ul class="blog-list">
+        <li><b>Logical shift</b> — 0 is shifted into the end that opens up; the bit that falls off the other end is simply lost (or captured in a carry flip-flop).</li>
+        <li><b>Circular shift (rotate)</b> — the bit that falls off one end is fed back into the other end, so no information is lost.</li>
+        <li><b>Arithmetic shift</b> — shifting left is multiplication by 2 (0 fills in); shifting right divides by 2 while <i>copying</i> the sign bit into the vacated position, so a negative two's-complement number stays negative.</li>
+      </ul>
+
+      <figure class="blog-fig">
+        <div class="fig-eyebrow"><span class="fig-num">FIG. 4-5</span></div>
+        <p class="fig-teach">Teaching objective: a shift register is built from <b>direct wiring between neighboring flip-flops</b>, not from a computation — the diagonal connections in this figure are the entire circuit.</p>
+        <div class="fig-stage tight">
+<svg class="dgm" viewBox="0 0 640 170" xmlns="http://www.w3.org/2000/svg">
+  <text class="tag-mono" x="10" y="20">Serial in (Rin)</text>
+  <line class="wire-a" x1="10" y1="30" x2="60" y2="30"/>
+  <polygon points="60,25 74,30 60,35" fill="var(--bp-data)"/>
+
+  <g>
+    <rect class="reg" x="80"  y="60" width="80" height="46" rx="1"/>
+    <text class="lbl" x="120" y="88" text-anchor="middle">FF0</text>
+    <rect class="reg" x="185" y="60" width="80" height="46" rx="1"/>
+    <text class="lbl" x="225" y="88" text-anchor="middle">FF1</text>
+    <rect class="reg" x="290" y="60" width="80" height="46" rx="1"/>
+    <text class="lbl" x="330" y="88" text-anchor="middle">FF2</text>
+    <rect class="reg-a" x="395" y="60" width="80" height="46" rx="1"/>
+    <text class="lbl lbl-a" x="435" y="88" text-anchor="middle">FF3</text>
+  </g>
+
+  <line class="wire" x1="160" y1="83" x2="185" y2="83"/>
+  <line class="wire" x1="265" y1="83" x2="290" y2="83"/>
+  <line class="wire-a" x1="370" y1="83" x2="395" y2="83"/>
+  <text class="tag" x="380" y="70" font-size="9">shift direction →</text>
+
+  <line class="wire-d" x1="475" y1="83" x2="530" y2="83"/>
+  <text class="sub" x="500" y="70" font-size="9">falls off</text>
+  <path class="ctrl" d="M530,83 C 560,83 560,140 120,140 C 90,140 90,110 90,106" fill="none"/>
+  <text class="tag" x="290" y="155" font-size="9.5" fill="var(--bp-ctrl)">circular: fed back to Rin as a rotate</text>
+</svg>
+        </div>
+        <p class="blog-cap">Each flip-flop's next value is simply its left neighbor's current value — no ALU involvement. Whether the "fed back" line at the far right connects to the far left (rotate) or to ground (logical) or copies the sign bit back in (arithmetic right shift) is the only thing that changes between shift types.</p>
+      </figure>
+
+      <div class="blog-note"><span class="tag">Overflow in an arithmetic shift-left</span>Multiplying by 2 can overflow an <span class="mono">n</span>-bit signed register even when neither operand looked large. For an 8-bit AC, the check is <span class="mono">V = C7 &oplus; C8</span> — the two bits nearest the sign position. Example: <span class="mono">A = 0100&nbsp;0001</span> (+65) shifted left gives <span class="mono">1000&nbsp;0010</span>, which reads as <i>negative</i>. Bits 7 and 8 differ, so <span class="mono">V=1</span> flags the result as invalid.</div>
+      <div class="blog-mod-links">
+        <button class="blog-mod-link" data-mod-link="AC">Interactive module — AC shift/rotate</button>
+      </div>
+
+      <h3 class="blog-h2sec" id="s-47"><span class="num">4.7</span>The ALU</h3>
+      <p class="blog-p">The Arithmetic Logic Unit is not a fourth kind of circuit — it's the arithmetic unit, the logic unit, and the shift unit built in Figures 4-4 and 4-5, wired in <b>parallel</b> off the same two operand inputs, with one output selector choosing which of the three results actually reaches the bus. Only the selected section's result matters; the other two compute values that are simply discarded that cycle.</p>
+
+      <figure class="blog-fig">
+        <div class="fig-eyebrow"><span class="fig-num">FIG. 4-6 — CAPSTONE</span></div>
+        <p class="fig-teach">Teaching objective: the ALU is a <b>synthesis, not a new idea</b> — three independent units share inputs, and a select code (S3 S2, alongside the arithmetic unit's own M) picks the output.</p>
+        <div class="fig-stage">
+<svg class="dgm" viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg">
+  <text class="tag-mono" x="10" y="20">A</text>
+  <line class="wire" x1="10" y1="30" x2="120" y2="30"/>
+  <line class="wire" x1="120" y1="30" x2="120" y2="240"/>
+  <text class="tag-mono" x="10" y="270">B</text>
+  <line class="wire" x1="10" y1="260" x2="120" y2="260"/>
+
+  <rect class="box" x="140" y="20"  width="150" height="56" rx="1"/>
+  <text class="lbl" x="215" y="43" text-anchor="middle" font-size="11">ARITHMETIC</text>
+  <text class="sub" x="215" y="60" text-anchor="middle">add · sub · inc · dec</text>
+  <line class="wire" x1="120" y1="48" x2="140" y2="48"/>
+
+  <rect class="box" x="140" y="122" width="150" height="56" rx="1"/>
+  <text class="lbl" x="215" y="145" text-anchor="middle" font-size="11">LOGIC</text>
+  <text class="sub" x="215" y="162" text-anchor="middle">AND · OR · XOR · NOT</text>
+  <line class="wire" x1="120" y1="150" x2="140" y2="150"/>
+
+  <rect class="box" x="140" y="224" width="150" height="56" rx="1"/>
+  <text class="lbl" x="215" y="247" text-anchor="middle" font-size="11">SHIFT</text>
+  <text class="sub" x="215" y="264" text-anchor="middle">left · right · rotate</text>
+  <line class="wire" x1="120" y1="252" x2="140" y2="252"/>
+
+  <line class="wire" x1="290" y1="48" x2="360" y2="48"/>
+  <line class="wire" x1="290" y1="150" x2="360" y2="150"/>
+  <line class="wire" x1="290" y1="252" x2="360" y2="252"/>
+  <line class="wire" x1="360" y1="48" x2="360" y2="252"/>
+
+  <polygon class="reg-a" points="360,20 360,280 430,250 430,50" />
+  <text class="lbl lbl-a" x="392" y="153" text-anchor="middle" font-size="11" transform="rotate(-4 392 153)">MUX</text>
+
+  <line class="wire-a" x1="430" y1="150" x2="480" y2="150"/>
+  <line class="bus" x1="480" y1="150" x2="620" y2="150"/>
+  <text class="tag-mono" x="500" y="136" fill="var(--bp-data)">TO BUS</text>
+
+  <rect class="box-c" x="380" y="20" width="90" height="30" rx="1"/>
+  <text class="tag-mono" x="425" y="39" text-anchor="middle" font-size="9.5">S3 S2 select</text>
+  <line class="ctrl" x1="425" y1="50" x2="425" y2="90" opacity=".7"/>
+  <line class="ctrl-a" x1="425" y1="90" x2="392" y2="153"/>
+</svg>
+        </div>
+        <p class="blog-cap">A and B feed all three sections at once; S3 S2 (plus M, from Fig. 4-4, inside the arithmetic section) selects one path to the output multiplexer. Chapter 5's AC is loaded straight from this output on almost every data-processing instruction.</p>
+      </figure>
+
+      <div class="blog-summary">
+        <h4>Chapter 4 — key takeaways</h4>
+        <ul>
+          <li><b>Micro-operations</b> are elementary, clock-scoped operations; <b>RTL</b> notation (<span class="mono">R2 &larr; R1</span>, conditions before a colon, commas for simultaneity) describes them precisely.</li>
+          <li>Transfers are <b>edge-triggered</b> — a held Load signal only takes effect at the next clock edge, which is exactly what makes simultaneous swaps correct.</li>
+          <li>A <b>common bus</b> avoids <span class="mono">n(n&minus;1)</span> dedicated wires; three-state buffers (or MUXes) plus a decoder guarantee exactly one active source.</li>
+          <li><span class="mono">M[AR]</span> treats memory as one more device on the bus, addressed rather than named — this notation carries directly into Chapter 5.</li>
+          <li>Arithmetic (add/sub/inc/dec), logic (AND/OR/XOR/NOT, and their bit-manipulation uses), and shift are three parallel hardware units, combined by one selector into the <b>ALU</b>.</li>
+        </ul>
+      </div>
+    </article>
+
+    <div class="blog-chapter-end"><span class="ln"></span><span>End of Chapter 4</span><span class="ln"></span></div>
+
+    <article class="blog-post" id="post-5">
+      <p class="blog-chapter-tag">Chapter 5</p>
+      <h2 class="blog-chapter-title blog-serif">Basic Computer Organization</h2>
+      <p class="blog-lead"><span class="blog-drop">C</span>hapter 4 gave us registers, a shared bus, and an ALU. Chapter 5 wires them into an actual computer and adds the one ingredient that was missing: a <b>control unit</b> that reads instructions out of memory and, cycle after cycle, asserts exactly the right conditions to turn each one into the correct sequence of Chapter-4 micro-operations.</p>
+
+      <h3 class="blog-h2sec" id="s-50"><span class="num">5.0</span>System Organization</h3>
+      <p class="blog-p">The Basic Computer has eight registers, a 4096-word memory, one common bus, an ALU, and a control unit — nothing else. Every one of the ideas below is a consequence of just these pieces existing and being wired the way Chapter 4 described.</p>
+
+      <figure class="blog-fig">
+        <div class="fig-eyebrow"><span class="fig-num">FIG. 5-1</span></div>
+        <p class="fig-teach">Teaching objective: see the whole machine <b>once, at a glance</b>, before the next nine sections zoom into each piece. Everything hangs off one bus; the control unit is the only thing that doesn't move data — it only decides who's allowed to.</p>
+        <div class="fig-stage">
+<svg class="dgm" viewBox="0 0 760 420" xmlns="http://www.w3.org/2000/svg">
+  <!-- registers left column -->
+  <g>
+    <rect class="reg" x="30" y="30"  width="86" height="34" rx="1"/><text class="lbl" x="73" y="52" text-anchor="middle" font-size="11">PC</text>
+    <rect class="reg" x="30" y="72"  width="86" height="34" rx="1"/><text class="lbl" x="73" y="94" text-anchor="middle" font-size="11">AR</text>
+    <rect class="reg" x="30" y="114" width="86" height="34" rx="1"/><text class="lbl" x="73" y="136" text-anchor="middle" font-size="11">IR</text>
+    <rect class="reg" x="30" y="156" width="86" height="34" rx="1"/><text class="lbl" x="73" y="178" text-anchor="middle" font-size="11">TR</text>
+    <rect class="reg" x="30" y="198" width="86" height="34" rx="1"/><text class="lbl" x="73" y="220" text-anchor="middle" font-size="11">DR</text>
+    <rect class="reg" x="30" y="240" width="86" height="34" rx="1"/><text class="lbl" x="73" y="262" text-anchor="middle" font-size="11">AC</text>
+    <text class="sub" x="73" y="18" text-anchor="middle">REGISTERS</text>
+  </g>
+  <g stroke="var(--bp-ink3)" stroke-width="1">
+    <line x1="116" y1="47" x2="180" y2="47"/><line x1="116" y1="89" x2="180" y2="89"/>
+    <line x1="116" y1="131" x2="180" y2="131"/><line x1="116" y1="173" x2="180" y2="173"/>
+    <line x1="116" y1="215" x2="180" y2="215"/><line x1="116" y1="257" x2="180" y2="257"/>
+  </g>
+  <line class="bus-mute" x1="180" y1="47" x2="180" y2="257"/>
+
+  <!-- common bus -->
+  <rect class="reg-a" x="180" y="140" width="130" height="34" rx="1"/>
+  <text class="lbl lbl-a" x="245" y="162" text-anchor="middle" font-size="11">COMMON BUS · 16-bit</text>
+
+  <!-- right column: memory / ALU / IO -->
+  <g>
+    <rect class="box-m" x="470" y="30"  width="120" height="46" rx="1"/><text class="lbl" x="530" y="58" text-anchor="middle" fill="var(--bp-mem)" font-size="11">MEMORY</text>
+    <rect class="box" x="470" y="94"  width="120" height="46" rx="1"/><text class="lbl" x="530" y="122" text-anchor="middle" font-size="11">ALU</text>
+    <rect class="box" x="470" y="158" width="120" height="46" rx="1"/><text class="lbl" x="530" y="186" text-anchor="middle" font-size="11">I/O</text>
+    <text class="sub" x="530" y="18" text-anchor="middle">DATAPATH</text>
+  </g>
+  <line class="wire" x1="310" y1="157" x2="470" y2="53"/>
+  <line class="wire" x1="310" y1="157" x2="470" y2="117"/>
+  <line class="wire" x1="310" y1="157" x2="470" y2="181"/>
+
+  <!-- control unit above, spanning -->
+  <rect class="box-c" x="180" y="290" width="410" height="90" rx="1"/>
+  <text class="lbl" x="385" y="314" text-anchor="middle" fill="var(--bp-ctrl)" font-size="12">CONTROL UNIT</text>
+  <text class="sub" x="270" y="335" text-anchor="middle">Instruction decoder</text>
+  <text class="sub" x="385" y="335" text-anchor="middle">Sequence counter</text>
+  <text class="sub" x="500" y="335" text-anchor="middle">Timing decoder</text>
+  <text class="tag" x="385" y="358" text-anchor="middle" font-size="10">reads IR + T-state → asserts control signals everywhere</text>
+
+  <line class="ctrl" x1="245" y1="290" x2="245" y2="174"/>
+  <line class="ctrl" x1="530" y1="290" x2="530" y2="204"/>
+  <line class="ctrl" x1="73" y1="290" x2="73" y2="274" opacity=".8"/>
+  <line class="ctrl" x1="73" y1="290" x2="30" y2="290"/>
+  <line class="ctrl" x1="30" y1="290" x2="30" y2="47" opacity=".5"/>
+  <text class="tag" x="180" y="292" font-size="9" fill="var(--bp-ctrl)">Load / Increment / Clear enables → every register</text>
+</svg>
+        </div>
+        <p class="blog-cap">Registers, memory, ALU and I/O all connect through one 16-bit bus. The control unit reads no data from the bus at all — its only inputs are IR and the current T-state, and its only outputs are the enable/select signals that decide which micro-operation happens this cycle.</p>
+      </figure>
+
+      <h3 class="blog-h2sec" id="s-51"><span class="num">5.1</span>Registers &amp; Instruction Format</h3>
+      <p class="blog-p">Eight registers, each with a specific job:</p>
+      <div class="blog-table-wrap">
+        <table class="blog-table">
+          <tr><th>Reg.</th><th>Bits</th><th>Purpose</th></tr>
+          <tr><td class="mono">AR</td><td>12</td><td>Address Register — points at the memory word being accessed</td></tr>
+          <tr><td class="mono">PC</td><td>12</td><td>Program Counter — points at the <i>next</i> instruction to fetch</td></tr>
+          <tr><td class="mono">DR</td><td>16</td><td>Data Register — holds an operand fetched from memory</td></tr>
+          <tr><td class="mono">AC</td><td>16</td><td>Accumulator — the general-purpose result register</td></tr>
+          <tr><td class="mono">IR</td><td>16</td><td>Instruction Register — holds the instruction being decoded/executed</td></tr>
+          <tr><td class="mono">TR</td><td>16</td><td>Temporary Register — scratch space, e.g. holding PC during BSA</td></tr>
+          <tr><td class="mono">INPR / OUTR</td><td>8</td><td>Input / Output Registers — one byte to/from a device</td></tr>
+          <tr><td class="mono">SC</td><td>3</td><td>Sequence Counter — counts the T-state within the current instruction</td></tr>
+        </table>
+      </div>
+      <p class="blog-p">Every instruction is one 16-bit word. Bit 15 and bits 14–12 together tell the control unit which of three formats it's looking at — this single classification step is what the whole rest of the chapter hinges on.</p>
+
+      <div class="fmt">
+        <p class="fmt-name"><span class="dot" style="background:var(--bp-mem)"></span>MEMORY-REFERENCE — bits 14–12 encode one of seven opcodes</p>
+        <div class="fmt-idx"><span>15</span><span>14&nbsp;13&nbsp;12</span><span>11 … 0</span></div>
+        <div class="bits">
+          <div class="bit f-i" style="flex:0 0 9%;">I</div>
+          <div class="bit f-op" style="flex:0 0 20%;">OPCODE</div>
+          <div class="bit f-addr" style="flex:1;">ADDRESS</div>
+        </div>
+        <div class="fmt-brackets">
+          <div class="fmt-bracket" style="flex:0 0 9%;border-color:var(--bp-ctrl);"><span class="fname">I</span><span class="fsub">indirect flag</span></div>
+          <div class="fmt-bracket" style="flex:0 0 20%;border-color:var(--bp-mem);"><span class="fname">OP</span><span class="fsub">AND, ADD, LDA…</span></div>
+          <div class="fmt-bracket" style="flex:1;border-color:var(--bp-data);"><span class="fname">ADDRESS</span><span class="fsub">12-bit operand location</span></div>
+        </div>
+      </div>
+      <div class="fmt">
+        <p class="fmt-name"><span class="dot" style="background:var(--bp-act)"></span>REGISTER-REFERENCE — bits 14–12 = 111, bit 15 = 0</p>
+        <div class="fmt-idx"><span>15</span><span>14&nbsp;13&nbsp;12</span><span>11 … 0</span></div>
+        <div class="bits">
+          <div class="bit f-i" style="flex:0 0 9%;">0</div>
+          <div class="bit f-op" style="flex:0 0 20%;">1&nbsp;1&nbsp;1</div>
+          <div class="bit f-rr" style="flex:1;">ONE BIT PER OPERATION</div>
+        </div>
+        <div class="fmt-brackets">
+          <div class="fmt-bracket" style="flex:0 0 9%;border-color:var(--bp-ctrl);"><span class="fname">0</span><span class="fsub">not indirect</span></div>
+          <div class="fmt-bracket" style="flex:0 0 20%;border-color:var(--bp-mem);"><span class="fname">111</span><span class="fsub">"not memory-ref" flag</span></div>
+          <div class="fmt-bracket" style="flex:1;border-color:var(--bp-act);"><span class="fname">CLA / CLE / CMA…</span><span class="fsub">exactly one bit is 1</span></div>
+        </div>
+      </div>
+      <div class="fmt">
+        <p class="fmt-name"><span class="dot" style="background:var(--bp-ctrl)"></span>INPUT–OUTPUT — bits 15–12 = 1111</p>
+        <div class="fmt-idx"><span>15</span><span>14&nbsp;13&nbsp;12</span><span>11 … 0</span></div>
+        <div class="bits">
+          <div class="bit f-i" style="flex:0 0 9%;">1</div>
+          <div class="bit f-op" style="flex:0 0 20%;">1&nbsp;1&nbsp;1</div>
+          <div class="bit f-rr" style="flex:1;background:var(--bp-ctrl-t);">ONE BIT PER I/O OPERATION</div>
+        </div>
+        <div class="fmt-brackets">
+          <div class="fmt-bracket" style="flex:0 0 9%;border-color:var(--bp-ctrl);"><span class="fname">1</span><span class="fsub">the I/O flag — reuses bit 15</span></div>
+          <div class="fmt-bracket" style="flex:0 0 20%;border-color:var(--bp-mem);"><span class="fname">111</span><span class="fsub">shared with register-ref</span></div>
+          <div class="fmt-bracket" style="flex:1;border-color:var(--bp-ctrl);"><span class="fname">INP / OUT / SKI…</span><span class="fsub">exactly one bit is 1</span></div>
+        </div>
+      </div>
+      <div class="blog-note"><span class="tag">Why bit 15 is overloaded</span>Bit 15 means "indirect addressing" for a memory-reference instruction — but for register- and I/O-reference instructions there is no address field to be indirect <i>about</i>, so the control unit repurposes that same bit as the I/O/register-reference distinguisher. §5.4 shows exactly how it tells the two apart.</div>
+
+      <h3 class="blog-h2sec" id="s-52"><span class="num">5.2</span>Generating Timing Signals</h3>
+      <p class="blog-p">Everything so far has talked about signals named <span class="mono">T0, T1, T2…</span> as if they simply exist. They don't — they're generated by two small pieces of hardware working together, and understanding them removes the last piece of "magic" from RTL statements like <span class="mono">T0: AR &larr; PC</span>.</p>
+      <ul class="blog-list">
+        <li>The <b>Sequence Counter (SC)</b> is a 3-bit counter, clocked every cycle, that simply counts <span class="mono">0, 1, 2, 3…</span> — it has no idea what instruction is running.</li>
+        <li>A <b>3-to-8 decoder</b> takes SC's binary value and turns it into eight separate lines, exactly one of which is 1 at a time: line <span class="mono">T</span><i>k</i> is 1 precisely when SC = <i>k</i>.</li>
+      </ul>
+      <p class="blog-p">So <span class="mono">T3</span> isn't a special signal — it's just "the decoder output for SC = 3." The control unit's job is then to combine these T-lines with bits of IR (via more decoding, §5.4) to produce the actual Load/Increment/Clear signals that reach registers.</p>
+
+      <figure class="blog-fig">
+        <div class="fig-eyebrow"><span class="fig-num">FIG. 5-2</span></div>
+        <p class="fig-teach">Teaching objective: <b>T-states are decoded from a counter</b>, the same decoder pattern from Figure 4-2's bus select — just applied to time instead of to registers.</p>
+        <div class="fig-stage tight">
+<svg class="dgm" viewBox="0 0 640 190" xmlns="http://www.w3.org/2000/svg">
+  <rect class="box-t" x="20" y="60" width="120" height="60" rx="1"/>
+  <text class="lbl" x="80" y="86" text-anchor="middle" fill="var(--bp-time)" font-size="11">SC</text>
+  <text class="sub" x="80" y="104" text-anchor="middle">3-bit counter</text>
+  <text class="tag-mono" x="10" y="40">CLK →</text>
+  <line class="time" x1="60" y1="45" x2="60" y2="60"/>
+
+  <line class="wire" x1="140" y1="90" x2="200" y2="90"/>
+  <rect class="box-c" x="200" y="55" width="130" height="70" rx="1"/>
+  <text class="lbl" x="265" y="82" text-anchor="middle" fill="var(--bp-ctrl)" font-size="11">3×8 DECODER</text>
+  <text class="sub" x="265" y="99" text-anchor="middle">SC = 3 →</text>
+  <text class="sub" x="265" y="112" text-anchor="middle">T3 = 1, all others 0</text>
+
+  <g font-family="var(--mono)" font-size="9.5">
+    <text class="tag-mono" x="345" y="24">T0</text><line class="time" x1="330" y1="20" x2="620" y2="20" opacity=".25"/>
+    <text class="tag-mono" x="345" y="42">T1</text><line class="time" x1="330" y1="38" x2="620" y2="38" opacity=".25"/>
+    <text class="tag-mono" x="345" y="60">T2</text><line class="time" x1="330" y1="56" x2="620" y2="56" opacity=".25"/>
+    <text class="tag-mono" x="345" y="78" fill="var(--bp-act)" font-weight="700">T3</text><line class="time" x1="330" y1="74" x2="620" y2="74" stroke="var(--bp-act)" stroke-width="2"/>
+    <text class="tag-mono" x="345" y="96">T4</text><line class="time" x1="330" y1="92" x2="620" y2="92" opacity=".25"/>
+    <text class="tag-mono" x="345" y="114">T5</text><line class="time" x1="330" y1="110" x2="620" y2="110" opacity=".25"/>
+    <text class="tag-mono" x="345" y="132">T6</text><line class="time" x1="330" y1="128" x2="620" y2="128" opacity=".25"/>
+  </g>
+  <line class="ctrl-a" x1="330" y1="90" x2="330" y2="74"/>
+  <text class="tag" x="20" y="150" font-size="10">SC resets to 0 at the start of every new instruction — every instruction begins its life at T0.</text>
+</svg>
+        </div>
+        <p class="blog-cap">SC free-runs; the decoder turns "SC currently equals 3" into a dedicated wire, T3, that the rest of the control unit can simply AND against other conditions. Only one T-line is ever active — by the same decoder guarantee as the bus-select logic in §4.2.</p>
+      </figure>
+      <div class="blog-mod-links">
+        <button class="blog-mod-link" data-mod-link="SC">Interactive module — Sequence Counter</button>
+      </div>
+
+      <h3 class="blog-h2sec" id="s-53"><span class="num">5.3</span>The Fetch Cycle</h3>
+      <p class="blog-p">Every single instruction, no matter what it turns out to be, begins with the identical two-step fetch — this is the "always" part of the instruction cycle, and it never depends on IR because IR doesn't hold anything meaningful yet.</p>
+      <div class="blog-table-wrap">
+        <table class="blog-table">
+          <tr><th>T-state</th><th>Micro-operation</th><th>What's happening</th></tr>
+          <tr><td class="mono">T0</td><td class="mono">AR &larr; PC</td><td>point AR at the next instruction</td></tr>
+          <tr><td class="mono">T1</td><td class="mono">IR &larr; M[AR],&nbsp; PC &larr; PC + 1</td><td>read the instruction in, and simultaneously advance PC — both use the bus in the same clock period because IR's read and PC's increment don't need the same bus cycle</td></tr>
+          <tr><td class="mono">T2</td><td class="mono">(decode — see §5.4)</td><td>SC's third state is spent classifying, not moving data</td></tr>
+        </table>
+      </div>
+      <div class="blog-note"><span class="tag">A subtlety worth pausing on</span>At T1, <span class="mono">IR &larr; M[AR]</span> needs the bus to carry data from memory, while <span class="mono">PC &larr; PC + 1</span> needs the bus to carry PC's incremented value into PC. These don't collide because the increment circuit reads PC's <i>own</i> current value directly, not off the shared bus — only one of the two transfers actually needs the bus that cycle.</div>
+
+      <h3 class="blog-h2sec" id="s-54"><span class="num">5.4</span>Decoding the Instruction</h3>
+      <p class="blog-p">At T3, the control unit has 16 bits sitting in IR and needs to answer one question: <i>memory-reference, register-reference, or I/O?</i> This is done with a second decoder — separate from the timing decoder in §5.2 — that reads IR's bits 14–12 directly.</p>
+      <ul class="blog-list">
+        <li>The <b>opcode decoder</b> is a 3×8 decoder fed by IR(14–12), producing eight lines <span class="mono">D0…D7</span> — one per possible opcode pattern.</li>
+        <li><span class="mono">D0…D6</span> correspond to the seven memory-reference opcodes (AND, ADD, LDA, STA, BUN, BSA, ISZ).</li>
+        <li><span class="mono">D7</span> means bits 14–12 were all 1 — <i>not</i> a memory-reference instruction. It's either register-reference or I/O.</li>
+      </ul>
+      <p class="blog-p">To break that last tie, the control unit looks at <b>IR bit 15</b>, relabelled <span class="mono">I</span> at this point:</p>
+
+      <div class="dtree">
+        <div class="dtree-q">D7 = 1 &nbsp;(bits 14–12 were 111)</div>
+        <div class="dtree-line"></div>
+        <div class="dtree-branches">
+          <div class="dtree-side">
+            <span class="dtree-tag">I = 0</span>
+            <div class="dtree-line"></div>
+            <div class="dtree-result"><b>Register-reference</b>bits 11–0 select one of 12 fixed operations (CLA, CLE, CMA…), decoded directly, no address field</div>
+          </div>
+          <div class="dtree-side">
+            <span class="dtree-tag">I = 1</span>
+            <div class="dtree-line"></div>
+            <div class="dtree-result alt"><b>Input–Output</b>bits 11–0 select one of 6 I/O operations (INP, OUT, SKI…) in exactly the same one-bit-per-op style</div>
+          </div>
+        </div>
+      </div>
+      <p class="blog-p">And when <span class="mono">D7 = 0</span>, the instruction <i>is</i> memory-reference, and that same bit 15 keeps its original meaning: <span class="mono">I = 1</span> now means indirect addressing (§5.5), not "this is an I/O instruction." The control unit never has to explicitly check which meaning applies — <span class="mono">D7</span> already encodes it, so every control equation downstream is written as <span class="mono">D7&prime;&middot;I&middot;(…)</span> for indirect, or <span class="mono">D7&middot;I&middot;(…)</span> for I/O, and the two can never fire together.</p>
+      <div class="blog-key"><span class="tag">The control equation this produces</span><span class="mono">D7&prime; &middot; I &middot; T3:&nbsp; AR &larr; M[AR]</span> — "if this is a memory-reference instruction (D7&prime;), and it's marked indirect (I), and we're at T3, then fetch the effective address." This single line is the entire indirect cycle from a control-unit's point of view.</div>
+
+      <h3 class="blog-h2sec" id="s-55"><span class="num">5.5</span>Indirect Addressing</h3>
+      <p class="blog-p">A memory-reference instruction's 12-bit address field can point two different ways:</p>
+      <ul class="blog-list">
+        <li><b>Direct addressing</b> (<span class="mono">I = 0</span>) — the address field <i>is</i> the operand's location. <span class="mono">AR</span> already holds it after decode; execution can start immediately.</li>
+        <li><b>Indirect addressing</b> (<span class="mono">I = 1</span>) — the address field points to a memory word that <i>itself contains</i> the operand's real address. One extra memory read is required before execution can begin, to follow that pointer.</li>
+      </ul>
+
+      <div class="rail-wrap">
+        <div class="rail">
+          <div class="rail-node time on"><span class="stg">T3 · decode</span><h4>AR = address field</h4><p>AR already holds the 12-bit field from IR</p></div>
+          <div class="rail-arrow">→</div>
+          <div class="rail-node"><span class="stg">If I = 1</span><h4>T4: AR ← M[AR]</h4><p>follow the pointer — one extra memory cycle</p></div>
+          <div class="rail-arrow">→</div>
+          <div class="rail-node"><span class="stg">execute</span><h4>AR = effective address</h4><p>direct and indirect instructions now look identical</p></div>
+        </div>
+      </div>
+      <p class="blog-cap" style="margin-top:14px">After this point, execution never needs to know whether the instruction was direct or indirect — that's the entire purpose of resolving it early: every memory-reference opcode's execution logic can simply trust that AR already holds the right address.</p>
+      <div class="blog-note"><span class="tag">Why it's useful</span>Indirect addressing lets a single instruction's address field act as a <i>pointer variable</i> rather than a fixed location — useful for arrays, and essential for <span class="mono">BSA</span> (§5.6), which needs to branch to a subroutine address that was computed, not hard-coded, at assembly time.</div>
+
+      <h3 class="blog-h2sec" id="s-56"><span class="num">5.6</span>Memory-Reference Execution</h3>
+      <p class="blog-p">All seven memory-reference instructions share the identical fetch (§5.3), decode (§5.4), and indirect resolution (§5.5) shown above — every difference between <span class="mono">AND</span> and <span class="mono">BUN</span> is contained entirely in what happens once AR finally holds the effective address. That divergence is the execute phase, and it's genuinely a 7-way fork:</p>
+
+      <div class="branch7">
+        <div class="b7-item"><span class="b7-op">AND</span><p>DR &larr; M[AR], then AC &larr; AC &and; DR</p><span class="b7-t">T4 · T5</span></div>
+        <div class="b7-item"><span class="b7-op">ADD</span><p>DR &larr; M[AR], then AC &larr; AC + DR, E &larr; Cout</p><span class="b7-t">T4 · T5</span></div>
+        <div class="b7-item"><span class="b7-op">LDA</span><p>DR &larr; M[AR], then AC &larr; DR</p><span class="b7-t">T4 · T5</span></div>
+        <div class="b7-item"><span class="b7-op">STA</span><p>M[AR] &larr; AC</p><span class="b7-t">T4</span></div>
+        <div class="b7-item"><span class="b7-op">BUN</span><p>PC &larr; AR &nbsp;<i>(unconditional branch)</i></p><span class="b7-t">T4</span></div>
+        <div class="b7-item"><span class="b7-op">BSA</span><p>M[AR] &larr; PC, AR &larr; AR + 1, then PC &larr; AR &nbsp;<i>(save return, then branch)</i></p><span class="b7-t">T4 · T5</span></div>
+        <div class="b7-item"><span class="b7-op">ISZ</span><p>DR &larr; M[AR], DR &larr; DR + 1, M[AR] &larr; DR; if DR = 0 then PC &larr; PC + 1 &nbsp;<i>(increment-and-skip)</i></p><span class="b7-t">T4 · T5 · T6</span></div>
+      </div>
+      <p class="blog-p" style="margin-top:18px">Three shapes recur across all seven, and recognizing them is more useful than memorizing each line individually:</p>
+      <ul class="blog-list">
+        <li><b>Read-modify-AC</b> (AND, ADD, LDA) — read the operand into DR, then combine it into AC through the ALU.</li>
+        <li><b>Write-back</b> (STA, and the store step of ISZ) — push a register's value out to <span class="mono">M[AR]</span> instead of reading from it.</li>
+        <li><b>Control transfer</b> (BUN, BSA) — load PC directly, with BSA additionally using AR as scratch to save a return address <i>before</i> overwriting it with the jump target.</li>
+      </ul>
+      <div class="blog-note"><span class="tag">BSA, unpacked</span><span class="mono">BSA</span> ("Branch and Save Address") is a call instruction avant la lettre: it writes the current PC (the return address) into the memory word right before the subroutine, increments AR to point <i>at</i> the subroutine's first instruction, then jumps there. The subroutine returns later with an indirect <span class="mono">BUN</span> through that same saved word.</div>
+
+      <h3 class="blog-h2sec" id="s-57"><span class="num">5.7</span>Register-Reference Instructions</h3>
+      <p class="blog-p">Register-reference instructions are structurally simpler than memory-reference ones in one specific way: there is no address field, no AR involvement, and therefore <b>no execute phase that spans multiple T-states</b> — every one of them completes in the single cycle right after decode.</p>
+      <div class="blog-key"><span class="tag">The shared condition</span>Every register-reference operation is gated by the same three-way AND: <span class="mono">D7&prime;&middot; I&middot; T3</span> — wait, that's indirect's condition. Register-reference instead uses <span class="mono">D7&middot; I&prime;&middot; T3</span>: D7 says "not memory-reference," I&prime; says "not I/O," T3 says "we just finished decoding." One specific bit among IR(11–0) then selects which operation actually fires.</div>
+      <p class="blog-p">Because that whole condition collapses to a single T-state, twelve different micro-operations can share the same timing signal and simply differ in which bit of IR gates them:</p>
+      <div class="blog-table-wrap">
+        <table class="blog-table">
+          <tr><th>Instr.</th><th>Control function</th><th>Micro-operation</th></tr>
+          <tr><td class="mono">CLA</td><td class="mono">D7 I&prime; T3 B11</td><td class="mono">AC &larr; 0</td></tr>
+          <tr><td class="mono">CLE</td><td class="mono">D7 I&prime; T3 B10</td><td class="mono">E &larr; 0</td></tr>
+          <tr><td class="mono">CMA</td><td class="mono">D7 I&prime; T3 B9</td><td class="mono">AC &larr; AC&prime;</td></tr>
+          <tr><td class="mono">CME</td><td class="mono">D7 I&prime; T3 B8</td><td class="mono">E &larr; E&prime;</td></tr>
+          <tr><td class="mono">CIR / CIL</td><td class="mono">D7 I&prime; T3 B7 / B6</td><td>circular shift right / left through E</td></tr>
+          <tr><td class="mono">INC</td><td class="mono">D7 I&prime; T3 B5</td><td class="mono">AC &larr; AC + 1</td></tr>
+          <tr><td class="mono">SPA / SNA / SZA / SZE</td><td class="mono">D7 I&prime; T3 B4…B1</td><td>skip next instruction if a condition on AC/E holds</td></tr>
+          <tr><td class="mono">HLT</td><td class="mono">D7 I&prime; T3 B0</td><td>stop the clock — halt the machine</td></tr>
+        </table>
+      </div>
+      <p class="blog-p">This is exactly the register-reference field from §5.1's instruction-format figure, now connected to hardware: each of the 12 bits in bits 11–0 is wired to its own AND gate alongside <span class="mono">D7 I&prime; T3</span>, and that gate's output is the actual control line reaching the register it affects.</p>
+
+      <h3 class="blog-h2sec" id="s-58"><span class="num">5.8</span>Input–Output Instructions</h3>
+      <p class="blog-p">I/O instructions mirror register-reference instructions almost exactly — same "one bit selects one operation" pattern, same single-cycle execution — with the condition flipped to <span class="mono">D7&middot; I&middot; T3</span> (I/O, not register-reference) and the targets being <span class="mono">INPR/OUTR</span> and the flag bits <span class="mono">FGI/FGO</span> instead of AC.</p>
+      <div class="blog-table-wrap">
+        <table class="blog-table">
+          <tr><th>Instr.</th><th>Micro-operation</th></tr>
+          <tr><td class="mono">INP</td><td class="mono">AC(0–7) &larr; INPR, FGI &larr; 0</td></tr>
+          <tr><td class="mono">OUT</td><td class="mono">OUTR &larr; AC(0–7), FGO &larr; 0</td></tr>
+          <tr><td class="mono">SKI</td><td>skip next instruction if <span class="mono">FGI = 1</span> (input device is ready)</td></tr>
+          <tr><td class="mono">SKO</td><td>skip next instruction if <span class="mono">FGO = 1</span> (output device is ready)</td></tr>
+          <tr><td class="mono">ION / IOF</td><td class="mono">IEN &larr; 1 / IEN &larr; 0 &nbsp;(interrupt enable, §5.9)</td></tr>
+        </table>
+      </div>
+      <p class="blog-p"><span class="mono">FGI</span> and <span class="mono">FGO</span> are the crux of the whole I/O scheme: an input device sets <span class="mono">FGI = 1</span> whenever it has a byte ready, and clears it once <span class="mono">INP</span> has consumed that byte. A program can either poll this flag directly with <span class="mono">SKI</span>, or — as the next section covers — let the CPU notice it automatically via interrupts.</p>
+
+      <h3 class="blog-h2sec" id="s-59"><span class="num">5.9</span>The Interrupt Cycle</h3>
+      <p class="blog-p">Polling a flag with <span class="mono">SKI</span> works, but it wastes cycles checking a device that usually isn't ready. Interrupts flip the arrangement: the <b>CPU itself</b> checks, automatically, at one fixed point in every instruction cycle — right after execution finishes, before the next fetch begins — rather than a program having to ask.</p>
+      <p class="blog-p">Two single-bit flip-flops make this possible:</p>
+      <ul class="blog-list">
+        <li><span class="mono">IEN</span> — Interrupt Enable, set/cleared by the program itself with <span class="mono">ION</span>/<span class="mono">IOF</span>. If IEN = 0, interrupts are simply ignored, no matter what the devices are doing.</li>
+        <li><span class="mono">R</span> — the interrupt flip-flop. It's normally 0; the check <span class="mono">IEN&middot;(FGI + FGO)</span> is performed once per instruction cycle, and if it's true, <span class="mono">R</span> is set to 1 right then.</li>
+      </ul>
+      <p class="blog-p">R = 1 is what actually redirects the CPU: instead of a normal fetch, the next cycle runs the interrupt cycle instead — saving where execution was, and jumping to a fixed service-routine address.</p>
+      <div class="blog-key"><span class="tag">The interrupt cycle itself (R = 1, in place of fetch)</span>
+        <span class="mono">RT0: AR &larr; 0, TR &larr; PC</span><br>
+        <span class="mono">RT1: M[AR] &larr; TR, PC &larr; 0</span><br>
+        <span class="mono">RT2: PC &larr; PC + 1, IEN &larr; 0, R &larr; 0, SC &larr; 0</span>
+      </div>
+      <p class="blog-p">In words: the return address (the old PC) is saved into memory location 0, PC is redirected to location 1 — the fixed entry point of the interrupt service routine — and IEN is cleared so a second interrupt can't preempt the handler before it's ready. The handler ends with an indirect <span class="mono">BUN 0 I</span>, which reads the saved return address back out of location 0 and jumps there, resuming exactly where the program left off.</p>
+      <div class="blog-mod-links">
+        <button class="blog-mod-link" data-mod-link="IO">Interactive module — I/O, Flags &amp; Interrupt</button>
+      </div>
+
+      <h3 class="blog-h2sec" id="s-510"><span class="num">5.10</span>The Complete Instruction Cycle</h3>
+      <p class="blog-p">Every section above is one piece of a single repeating loop. Fetch and decode always run; indirect resolution and the interrupt cycle are conditional; execute always runs exactly once, in one of the three shapes covered in §§5.6–5.8. This is the shape the CPU is in <i>forever</i>, from power-on until it's halted:</p>
+
+      <figure class="blog-fig wide">
+        <div class="fig-eyebrow"><span class="fig-num">FIG. 5-3 — CAPSTONE</span></div>
+        <p class="fig-teach">Teaching objective: <b>this is every section of Chapter 5, in one loop.</b> Reading direction is left to right along the timing rail; both forks drop below the state that triggers them.</p>
+        <div class="rail-wrap">
+          <div class="rail">
+            <div class="rail-node time on"><span class="stg">T0–T2</span><h4>Fetch</h4><p class="mono" style="font-size:11px">AR&larr;PC · IR&larr;M[AR] · PC&larr;PC+1</p></div>
+            <div class="rail-arrow">→</div>
+            <div class="rail-node time"><span class="stg">T3</span><h4>Decode</h4><p>D0…D7 classify the opcode; I = bit 15</p></div>
+            <div class="rail-arrow">→</div>
+            <div class="rail-node time"><span class="stg">T4…</span><h4>Execute</h4><p>one of §5.6 / §5.7 / §5.8's three shapes runs</p></div>
+            <div class="rail-arrow">→</div>
+            <div class="rail-node"><span class="stg">every cycle, once</span><h4>Interrupt check</h4><p class="mono" style="font-size:11px">test IEN&middot;(FGI+FGO)</p></div>
+          </div>
+          <div class="rail-branch">
+            <span class="lead">↳ if D7&prime;&middot; I &nbsp;(§5.5)</span>
+            <div class="opt"><b>Indirect cycle</b> — one extra read, <span class="mono">AR &larr; M[AR]</span>, inserted between decode and execute.</div>
+            <span class="lead">↳ if R = 1 &nbsp;(§5.9)</span>
+            <div class="opt"><b>Interrupt cycle</b> replaces the <i>next</i> fetch — return address saved, control redirected to the service routine.</div>
+          </div>
+        </div>
+        <div class="rail-loop" style="display:flex;align-items:center;gap:8px;justify-content:flex-end;margin-top:10px;font-family:var(--mono);font-size:10.5px;color:var(--bp-ink3);">
+          <span style="flex:1;height:1px;background:var(--bp-rule)"></span>
+          control returns to Fetch — for the next instruction, or for the interrupt handler's first instruction
+          <span style="flex:1;height:1px;background:var(--bp-rule)"></span>
+        </div>
+        <p class="blog-cap">Every register-reference and I/O instruction skips the indirect fork entirely (they have no address field); every memory-reference instruction may or may not take it, decided at decode. The interrupt fork is independent of instruction type — it's checked after execute regardless of what just ran.</p>
+      </figure>
+
+      <div class="blog-summary">
+        <h4>Chapter 5 — key takeaways</h4>
+        <ul>
+          <li>The Basic Computer is eight registers, memory, a bus, an ALU, and a control unit — the control unit reads only IR and the T-state, and outputs only enable/select signals.</li>
+          <li>Bit 15 (I) and bits 14–12 (opcode/D7) together classify every instruction into <b>memory-reference, register-reference, or I/O</b> — three formats sharing one 16-bit word.</li>
+          <li><b>T-states</b> are decoded from a free-running sequence counter, exactly like the bus-select decoder from Chapter 4 — there's nothing magic about <span class="mono">T3</span>.</li>
+          <li>Fetch and decode are identical for every instruction; <b>indirect addressing</b> inserts one optional extra memory read to resolve a pointer before execution.</li>
+          <li>Execution takes one of three shapes: the 7-way <b>memory-reference</b> fork, single-cycle <b>register-reference</b> operations, or single-cycle <b>I/O</b> operations.</li>
+          <li>The <b>interrupt cycle</b> is a CPU-driven check performed once per instruction cycle — an automatic alternative to polling <span class="mono">FGI</span>/<span class="mono">FGO</span> by hand.</li>
+          <li>All of it is one loop: <span class="mono">Fetch &rarr; Decode &rarr; (Indirect) &rarr; Execute &rarr; Interrupt check &rarr; Fetch…</span></li>
+        </ul>
+      </div>
+
+      <p class="blog-p" style="margin-top:36px">That loop is the entire Basic Computer. Every idea from Chapter 4 — RTL notation, the common bus, the ALU — exists only to make one iteration of it possible; every section of Chapter 5 exists only to decide which of that loop's branches gets taken next. Step through it instruction by instruction in the simulator to see the same T-states, decode logic, and control signals from this page acting on real memory and registers.</p>
+      <div class="blog-mod-links">
+        <button class="blog-mod-link" data-tab="computer">Open the full simulator →</button>
+      </div>
+    </article>
+
+  </div>
+</div>
+<!-- ================= /BLOG TAB ================= -->
+
+
+<script src="js/cpu.js"></script>
+<script src="js/assembler.js"></script>
+<script src="js/samples.js"></script>
+<script src="js/ui-shell.js"></script>
+<script src="js/diagram-geometry.js"></script>
+<script src="js/render.js"></script>
+<script src="js/controls.js"></script>
+<script src="js/oscilloscope.js"></script>
+<script src="js/events.js"></script>
+<script src="js/modules.js"></script>
+<script src="js/home-diagram.js"></script>
+<script src="js/blog-links.js"></script>
+<script src="js/init.js"></script>
+</body>
+</html>

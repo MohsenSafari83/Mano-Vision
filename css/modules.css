@@ -1,0 +1,150 @@
+/* ===== Modules tab ===== */
+.modules-wrap{ max-width:1240px; margin:0 auto; padding:40px 24px 90px; }
+.modules-head{ text-align:center; margin-bottom:32px; }
+.modules-head h2{ font-size:26px; font-weight:800; margin:0 0 8px; }
+.modules-head p{ color:var(--muted); font-size:13.5px; margin:0; }
+.mod-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+@media (max-width:980px){ .mod-grid{ grid-template-columns:repeat(3,1fr); } }
+@media (max-width:600px){ .mod-grid{ grid-template-columns:repeat(2,1fr); } }
+.mod-card{ border:1px solid var(--border-soft); border-radius:12px; padding:20px 16px; background:var(--panel); cursor:pointer; transition:.12s; text-align:left; }
+.mod-card:hover{ border-color:var(--border-active); transform:translateY(-2px); }
+.mod-card .top{ display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; }
+.mod-card .name{ font-family:var(--mono); font-weight:800; font-size:15px; }
+.mod-card .bits{ font-family:var(--mono); font-size:9.5px; color:var(--muted); border:1px solid var(--border); border-radius:999px; padding:2px 8px; }
+.mod-card .full{ font-size:12.5px; font-weight:600; margin-bottom:4px; }
+.mod-card .desc{ font-size:11.5px; color:var(--muted); line-height:1.5; }
+
+.mod-detail{ display:none; }
+.mod-detail.open{ display:block; }
+.mod-back{ display:inline-flex; align-items:center; gap:6px; font-size:12.5px; color:var(--muted); margin-bottom:16px; cursor:pointer; }
+.mod-back:hover{ color:var(--text); }
+.mod-detail-grid{ display:grid; grid-template-columns:1.3fr 1fr; gap:18px; align-items:start; }
+@media (max-width:980px){ .mod-detail-grid{ grid-template-columns:1fr; } }
+#modDiagram{ width:100%; height:auto; display:block; }
+.bit-cells{ display:flex; gap:3px; flex-wrap:wrap; margin-top:14px; }
+.bit-cell{ width:24px; height:28px; display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:10.5px; font-weight:700; border-radius:4px; background:var(--panel2); border:1px solid var(--border); color:var(--muted2); }
+.bit-cell.one{ color:#fff; background:var(--blue); border-color:var(--blue); }
+.mod-ctrl-row{ display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+.timing-row{ display:flex; gap:8px; margin-top:14px; }
+.timing-dot{ width:34px; height:34px; border-radius:50%; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:11px; color:var(--muted); }
+.timing-dot.on{ background:var(--blue); border-color:var(--blue); color:#fff; }
+
+/* ============================================================
+   HTML/CSS interactive hardware modules.
+   Every wire / signal / arrow / chip is a real DOM element.
+   JS only toggles the `.active` class (state). All colors,
+   glows, thickness and the flow animation live here in CSS,
+   driven by the per-signal --sig-color custom property.
+   Idle wires are always neutral gray. Color appears ONLY on
+   `.active` — no wire is ever statically colored.
+   ============================================================ */
+.hw-module{ margin:2px 0 8px; }
+.hw-mod{ display:flex; align-items:center; gap:10px; padding:14px 4px; }
+.hw-side{ flex:1; min-width:0; display:flex; flex-direction:column; }
+
+.hw-lane{ display:flex; align-items:center; margin:5px 0; min-width:0; }
+.hw-lane .hw-wire{
+  position:relative; flex:1; min-width:34px; height:3px; border-radius:2px;
+  background:var(--border-soft); opacity:.45;
+  transition:height .12s ease, background-color .12s ease, opacity .15s ease, box-shadow .15s ease;
+}
+.hw-lane .hw-flow{
+  position:absolute; top:-2px; bottom:-2px; left:0; width:36%;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.85), transparent);
+  opacity:0; animation:none; pointer-events:none;
+}
+.hw-lane .hw-arrow{
+  width:0; height:0; flex-shrink:0; margin-left:-2px;
+  border-top:5px solid transparent; border-bottom:5px solid transparent; border-left:8px solid var(--border-soft);
+  transition:border-left-color .12s ease;
+}
+.hw-lane .hw-arrow.left{ transform:rotate(180deg); margin-left:0; margin-right:-2px; }
+.hw-lane .hw-sig{
+  font-family:var(--mono); font-size:10px; font-weight:700; letter-spacing:.4px;
+  color:var(--muted2); padding:0 6px; white-space:nowrap; transition:color .12s ease;
+}
+
+.hw-chip{
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px;
+  min-width:116px; padding:13px 12px; border:1.4px solid var(--border); border-radius:10px;
+  background:var(--panel2); flex-shrink:0;
+  transition:border-color .12s ease, box-shadow .18s ease;
+}
+.hw-chip .hw-name{ font-family:var(--mono); font-weight:800; font-size:13px; letter-spacing:.6px; }
+.hw-chip .hw-val{ font-family:var(--mono); font-size:15px; font-weight:700; letter-spacing:1px; color:var(--text); }
+.hw-chip .hw-sub{ font-family:var(--mono); font-size:8.5px; color:var(--muted); }
+.hw-chip .hw-flag{ display:inline-flex; align-items:center; gap:5px; font-family:var(--mono); font-size:8.5px; font-weight:700; color:var(--muted2); transition:color .12s ease; }
+.hw-chip .hw-flag .hw-led{ width:7px; height:7px; border-radius:50%; background:var(--border); transition:background .12s ease, box-shadow .12s ease; }
+.hw-chip .hw-flag.on{ color:var(--green); }
+.hw-chip .hw-flag.on .hw-led{ background:var(--green); box-shadow:0 0 7px var(--green); }
+/* secondary effect only — the wire is the primary activation element */
+.hw-chip.active{
+  border-color:var(--sig-color, var(--blue));
+  box-shadow:0 0 12px var(--chip-glow, rgba(79,140,255,.20));
+}
+
+/* ---- per-signal colors: declared statically, APPLIED only when .active ---- */
+.hw-lane[data-sig="LD"],  .hw-lane[data-sig="INP"], .hw-lane[data-sig="AR"]{ --sig-color:var(--blue); }
+.hw-lane[data-sig="INR"], .hw-lane[data-sig="READ"]{ --sig-color:var(--green); }
+.hw-lane[data-sig="CLR"]{ --sig-color:var(--red); }
+.hw-lane[data-sig="OUT"], .hw-lane[data-sig="WRITE"]{ --sig-color:var(--amber); }
+.hw-lane[data-sig="BUS"], .hw-lane[data-sig^="BUS-SRC"]{ --sig-color:var(--accent2); }
+
+.hw-lane.active .hw-wire{
+  height:4px; background:var(--sig-color); opacity:1; box-shadow:0 0 9px var(--sig-color);
+}
+.hw-lane.active .hw-arrow{ border-left-color:var(--sig-color); }
+.hw-lane.active .hw-sig{ color:var(--sig-color); }
+.hw-lane.active .hw-flow{ opacity:.85; animation:hwflow .55s linear infinite; }
+.hw-lane.active .hw-flow.rev{ animation-direction:reverse; }
+@keyframes hwflow{ from{ transform:translateX(-135%); } to{ transform:translateX(335%); } }
+
+.hw-chip[data-sig="REG"], .hw-chip[data-sig="INPR"]{ --sig-color:var(--blue); }
+.hw-chip[data-sig="AC"]{ --sig-color:var(--accent1); }
+.hw-chip[data-sig="OUTR"], .hw-chip[data-sig="MEM"]{ --sig-color:var(--amber); }
+
+/* ---- bus module ---- */
+.hw-bus-lanes{ flex:1; min-width:0; display:flex; flex-direction:column; justify-content:space-evenly; }
+.hw-trunk{
+  position:relative; overflow:hidden; width:132px; flex-shrink:0; align-self:stretch;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px;
+  border:1.4px solid var(--accent1); border-radius:10px; background:var(--panel2);
+  transition:border-color .15s ease, box-shadow .15s ease;
+}
+.hw-trunk .hw-trunk-name{ font-family:var(--mono); font-size:10px; font-weight:800; letter-spacing:1px; color:var(--accent1); }
+.hw-trunk .hw-trunk-sub{ font-family:var(--mono); font-size:8px; color:var(--muted); }
+.hw-trunk .hw-trunk-sel{ font-family:var(--mono); font-size:8.5px; color:var(--muted2); text-align:center; padding:0 4px; line-height:1.4; }
+.hw-trunk .hw-flow{
+  position:absolute; top:0; bottom:auto; left:0; right:0; width:auto; height:36%;
+  background:linear-gradient(0deg, transparent, rgba(255,255,255,.85), transparent);
+  animation:none; opacity:0; pointer-events:none;
+}
+.hw-trunk.active{ border-color:var(--accent2); box-shadow:0 0 14px rgba(34,211,238,.32); }
+.hw-trunk.active .hw-trunk-name, .hw-trunk.active .hw-trunk-sel{ color:var(--accent2); }
+.hw-trunk.active .hw-flow{ opacity:.9; animation:hwflowv .5s linear infinite; }
+@keyframes hwflowv{ from{ transform:translateY(-140%); } to{ transform:translateY(340%); } }
+
+/* ---- sequence counter ---- */
+.hw-sc{ flex-direction:column; align-items:center; gap:16px; padding:16px 8px; }
+.hw-sc-head{ display:flex; align-items:baseline; gap:14px; font-size:10px; letter-spacing:2px; color:var(--muted); font-weight:700; }
+.hw-sc-head .hw-sc-cur{ font-size:12px; letter-spacing:1px; color:var(--blue); }
+.hw-sc-row{ display:flex; gap:12px; align-items:flex-start; }
+.hw-tdot{ display:flex; flex-direction:column; align-items:center; gap:7px; }
+.hw-dot{ position:relative; width:32px; height:32px; border-radius:50%; border:1.5px solid var(--border); background:var(--panel2); transition:border-color .15s, background .15s; }
+.hw-tname{ font-family:var(--mono); font-size:10px; color:var(--muted2); transition:color .15s; }
+.hw-tdot.active .hw-dot{ background:var(--blue); border-color:var(--blue); }
+.hw-tdot.active .hw-tname{ color:var(--blue); font-weight:700; }
+.hw-tdot.active .hw-dot::after{
+  content:''; position:absolute; inset:-1px; border-radius:50%;
+  border:2px solid var(--blue); animation:hwping 1.4s ease-out infinite;
+}
+@keyframes hwping{ 0%{ transform:scale(1); opacity:.75; } 100%{ transform:scale(1.9); opacity:0; } }
+.hw-sc-note{ font-size:11px; color:var(--muted); text-align:center; max-width:430px; line-height:1.55; }
+
+.hw-io .hw-lane{ flex:1; }
+@media (max-width:640px){
+  .hw-mod{ flex-wrap:wrap; justify-content:center; }
+  .hw-side{ flex:1 1 100%; }
+  .hw-io .hw-lane{ flex:1 1 100%; }
+}
+
