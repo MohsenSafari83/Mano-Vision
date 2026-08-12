@@ -28,7 +28,7 @@ This project implements the exact same hardware model used by the web-based simu
 
 |                                      |                                                               |     |
 | ------------------------------------ | ------------------------------------------------------------- | --- |
-| ![Modules tab](./assets/modules.png) | ![System architecture view](./assets/system-architecture.png) |     |
+| ![Modules tab](./assets/modules.png) | ![System architecture view](./assets/System-Architecture.png) |     |
 
 _Left: the "Individual Modules" tab, where each component (registers, ALU, memory, bus...) can be explored on its own. Right: the live System Architecture diagram — registers, common bus, ALU, memory, and I/O — that animates as a program runs._
 
